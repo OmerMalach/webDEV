@@ -1,0 +1,215 @@
+{
+    "users": [
+      {
+        "nickname": "omer malach",
+        "email": "omer.malach@example.com",
+        "password": "omer420",
+        "phone_number": "+972 50-123-4420"
+      },
+      {
+        "nickname": "YossiCohen",
+        "email": "yossi.cohen@example.com",
+        "password": "yossi123",
+        "phone_number": "+972 50-123-4567"
+      },
+      {
+        "nickname": "RivkaLevy",
+        "email": "rivka.levy@example.com",
+        "password": "rivka456",
+        "phone_number": "+972 54-234-5678"
+      },
+      {
+        "nickname": "ItayCohen",
+        "email": "itay.cohen@example.com",
+        "password": "itay789",
+        "phone_number": "+972 52-345-6789"
+      },
+      {
+        "nickname": "NoaLevi",
+        "email": "noa.levi@example.com",
+        "password": "noa101",
+        "phone_number": "+972 53-456-7890"
+      },
+      {
+        "nickname": "DavidCohen",
+        "email": "david.cohen@example.com",
+        "password": "david2020",
+        "phone_number": "+972 54-567-8901"
+      },
+      {
+        "nickname": "SaraLevy",
+        "email": "sara.levy@example.com",
+        "password": "sara777",
+        "phone_number": "+972 55-678-9012"
+      },
+      {
+        "nickname": "AviCohen",
+        "email": "avi.cohen@example.com",
+        "password": "avi123",
+        "phone_number": "+972 53-789-0123"
+      },
+      {
+        "nickname": "RachelLevi",
+        "email": "rachel.levi@example.com",
+        "password": "rachel456",
+        "phone_number": "+972 52-890-1234"
+      },
+      {
+        "nickname": "EliCohen",
+        "email": "eli.cohen@example.com",
+        "password": "eli2022",
+        "phone_number": "+972 54-901-2345"
+      },
+      {
+        "nickname": "HilaLevy",
+        "email": "hila.levy@example.com",
+        "password": "hila777",
+        "phone_number": "+972 55-012-3456"
+      },
+      {
+        "nickname": "ShiraCohen",
+        "email": "shira.cohen@example.com",
+        "password": "shira123",
+        "phone_number": "+972 53-123-4567"
+      },
+      {
+        "nickname": "DanielLevi",
+        "email": "daniel.levi@example.com",
+        "password": "daniel456",
+        "phone_number": "+972 52-234-5678"
+      },
+      {
+        "nickname": "TalCohen",
+        "email": "tal.cohen@example.com",
+        "password": "tal789",
+        "phone_number": "+972 54-345-6789"
+      },
+      {
+        "nickname": "MayaLevy",
+        "email": "maya.levy@example.com",
+        "password": "maya101",
+        "phone_number": "+972 55-456-7890"
+      },
+        {
+        "nickname": "IdanCohen",
+        "email": "idan.cohen@example.com",
+        "password": "idan2020",
+        "phone_number": "+972 54-567-8901"
+        },
+        {
+        "nickname": "LiatLevi",
+        "email": "liat.levi@example.com",
+        "password": "liat777",
+        "phone_number": "+972 55-678-9012"
+        },
+        {
+        "nickname": "RonCohen",
+        "email": "ron.cohen@example.com",
+        "password": "ron123",
+        "phone_number": "+972 53-789-0123"
+        },
+        {
+        "nickname": "GaliLevi",
+        "email": "gali.levi@example.com",
+        "password": "gali456",
+        "phone_number": "+972 52-890-1234"
+        },
+        {
+        "nickname": "UriCohen",
+        "email": "uri.cohen@example.com",
+        "password": "uri2022",
+        "phone_number": "+972 54-901-2345"
+        },
+        {
+        "nickname": "TaliLevi",
+        "email": "tali.levi@example.com",
+        "password": "tali777",
+        "phone_number": "+972 55-012-3456"
+        },
+        {
+        "nickname": "NirCohen",
+        "email": "nir.cohen@example.com",
+        "password": "nir123",
+        "phone_number": "+972 53-123-4567"
+        },
+        {
+        "nickname": "ShaniLevi",
+        "email": "shani.levi@example.com",
+        "password": "shani456",
+        "phone_number": "+972 52-234-5678"
+        },
+        {
+        "nickname": "YanivCohen",
+        "email": "yaniv.cohen@example.com",
+        "password": "yaniv789",
+        "phone_number": "+972 54-345-6789"
+        },
+        {
+        "nickname": "MiriLevi",
+        "email": "miri.levi@example.com",
+        "password": "miri101",
+        "phone_number": "+972 55-456-7890"
+        },
+            {
+            "nickname": "ירון כהן",
+            "email": "yaron@example.com",
+            "password": "yaron123",
+            "phone_number": "+972 55-456-7890"
+            },
+            {
+            "nickname": "מאיה לוי",
+            "email": "maia@example.com",
+            "password": "maia456",
+            "phone_number": "+972 53-234-5678"
+            },
+            {
+            "nickname": "עומר שחם",
+            "email": "omer@example.com",
+            "password": "omer789",
+            "phone_number": "+972 54-345-6789"
+            },
+            {
+            "nickname": "יעל כהן",
+            "email": "yael@example.com",
+            "password": "yael101",
+            "phone_number": "+972 55-456-7890"
+            },
+            {
+            "nickname": "אביב לוי",
+            "email": "aviv@example.com",
+            "password": "aviv2022",
+            "phone_number": "+972 53-234-5678"
+            },
+            {
+            "nickname": "דורון כהן",
+            "email": "doron@example.com",
+            "password": "doron777",
+            "phone_number": "+972 54-345-6789"
+            },
+            {
+            "nickname": "רינת לוי",
+            "email": "rinat@example.com",
+            "password": "rinat123",
+            "phone_number": "+972 55-456-7890"
+            },
+            {
+            "nickname": "טלי כהן",
+            "email": "tali@example.com",
+            "password": "tali456",
+            "phone_number": "+972 53-234-5678"
+            },
+            {
+            "nickname": "איתי לוי",
+            "email": "itai@example.com",
+            "password": "itai789",
+            "phone_number": "+972 54-345-6789"
+            },
+            {
+            "nickname": "שחר כהן",
+            "email": "shachar@example.com",
+            "password": "shachar101",
+            "phone_number": "+972 55-456-7890"
+            }
+        ]
+        }
+        

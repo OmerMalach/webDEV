@@ -1,0 +1,100 @@
+h2 {
+  text-align: center;
+  color: #517276;
+  margin-top: 7px;
+}
+.search-container label {
+  width: 90%;
+  font-size: 17px;
+  padding: 10px 10px;
+  display: block;
+  justify-content: center;
+  justify-self: center;
+  text-align: center;
+  color: #517276;
+}
+.search-container {
+  justify-content: center;
+  text-align: center;
+  padding: 5px 10px;
+}
+.search-container input[type="text"] {
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 420px;
+  text-align: left; /* for hebrew we should do right? */
+}
+#search-button {
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 15px;
+}
+#search-button:hover {
+  background-color: #36e23c;
+}
+.buddy-board {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+}
+
+.buddy-board > div {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  border: 2px solid #ccc;
+  border-radius: 300px;
+  padding: 10px 10px;
+}
+.buddy-board > div:hover {
+  margin: 2px;
+  border: 2px solid #f1f8d6;
+}
+.buddy-board > div img {
+  border-radius: 150px;
+  width: 110px;
+}
+.buddy-board > div h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px;
+  color: #1a5c67;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+}
+.buddy-board > div i {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 858px) {
+  h2 {
+    padding: 10px;
+  }
+  #search-button {
+    margin-top: 10px;
+    padding: 10px 80px;
+  }
+  .buddy-board > div {
+    width: 210px;
+  }
+  .buddy-board > div h3 {
+    font-size: 15px;
+  }
+  .buddy-board > div img {
+    width: 60px;
+  }
+  img {
+    width: 280px;
+    padding: 5px 20px;
+    line-height: 60px;
+  }
+}

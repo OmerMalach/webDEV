@@ -1,0 +1,105 @@
+{
+    "summaries": [
+    {
+        "id": 1,
+        "name": "Introduction to Computer Science",
+        "courseNumber": "CS101",
+        "teacher": "John Doe",
+        "year": "2022",
+        "semester": "Fall",
+        "rank": 4.5,
+        "numDownloads": 10,
+        "uploadDate": "2022-11-01",
+        "summaryUrl": "https://example.com/summary1.pdf",
+        "uploader": {
+        "id": 1,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Advanced Calculus",
+        "courseNumber": "MATH403",
+        "teacher": "Emily Johnson",
+        "year": "2023",
+        "semester": "Spring",
+        "rank": 4.9,
+        "numDownloads": 15,
+        "uploadDate": "2023-03-01",
+        "summaryUrl": "https://example.com/summary2.pdf",
+        "uploader": {
+        "id": 2,
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+        }
+      },
+      {
+        "id": 3,
+        "name": "English Composition",
+        "courseNumber": "ENG101",
+        "teacher": "Karen Brown",
+        "year": "2022",
+        "semester": "Summer",
+        "rank": 4.2,
+        "numDownloads": 8,
+        "uploadDate": "2022-07-01",
+        "summaryUrl": "https://example.com/summary3.pdf",
+        "uploader": {
+        "id": 3,
+        "name": "David Lee",
+        "email": "david.lee@example.com"
+        }
+      },
+      {"id": 4,
+        "name": "Introduction to Psychology",
+        "courseNumber": "PSY101",
+        "teacher": "Michael Johnson",
+        "year": "2023",
+        "semester": "Fall",
+        "rank": 4.8,
+        "numDownloads": 20,
+        "uploadDate": "2023-11-01",
+        "summaryUrl": "https://example.com/summary4.pdf",
+        "uploader": {
+        "id": 4,
+        "name": "Sarah Jones",
+        "email": "sarah.jones@example.com"
+        }
+      },
+      {
+        "id": 5,
+        "name": "Organic Chemistry",
+        "courseNumber": "CHEM301",
+        "teacher": "Robert Davis",
+        "year": "2022",
+        "semester": "Spring",
+        "rank": 4.6,
+        "numDownloads": 12,
+        "uploadDate": "2022-04-01",
+        "summaryUrl": "https://example.com/summary5.pdf",
+        "uploader": {
+        "id": 5,
+        "name": "Peter Wilson",
+        "email": "peter.wilson@example.com"
+        }
+      },
+      {
+        "id": 6,
+        "name": "World History",
+        "courseNumber": "HIST201",
+        "teacher": "Laura Brown",
+        "year": "2023",
+        "semester": "Summer",
+        "rank": 4.3,
+        "numDownloads": 7,
+        "uploadDate": "2023-07-01",
+        "summaryUrl": "https://example.com/summary6.pdf",
+        "uploader": {
+        "id": 1,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com"
+        }
+      }
+    ]
+}

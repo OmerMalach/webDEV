@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyBudy:SummarySearchResults</title>
+    <link rel="stylesheet" href="../static/CSS/app.css" />
+    <link rel="stylesheet" href="../static/CSS/searchResults.css" />
+    <link rel="icon" href="../static/photos/icon.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/7d07e6b941.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <nav>
+    <img src="../static/photos/logo2.png" alt="StudyBudy" />
+    <ul id="navbar">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="thelibrary.html">The library</a></li>
+      <li><a href="summarySearch.html">Summary Search</a></li>
+      <li><a href="mySummaries.html">My Summaries</a></li>
+      <li><a href="summeryUpload.html">Summary Upload</a></li>
+    </ul>
+    <input type="checkbox" name="checkbox" id="check" />
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars" id="menu-icon"></i>
+    </label>
+  </nav>
+  <body>
+    <main>
+      <div class="container">
+        <h1>Search Results</h1>
+        <div class="search-container">
+          <form id="filter-form" action="#">
+            <label for="keyword"
+              >Filter by summery name, uploader name or course number:</label
+            >
+            <input type="text" id="keyword" name="keyword" />
+            <button type="submit" id="filter-button">Filter<i></i></button>
+          </form>
+        </div>
+        <div class="summary-board">
+          <!-- Summary cards will be generated here -->
+        </div>
+      </div>
+    </main>
+  </body>
+  <footer>
+    <div class="footer-links">
+      <a href="#" id="contact-us-link">Contact Us</a>
+      <a href="#" id="about-us-link">About Us</a>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/" target="_blank"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+      <a href="https://www.instagram.com/" target="_blank"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a href="https://www.twitter.com/" target="_blank"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    </div>
+
+    <div class="footer-text">© 2023 All Rights Reserved, StuddyBuddy®</div>
+  </footer>
+  <script src="../static/JS/searchResults.js"></script>
+  <script src="../static/JS/menu.js"></script>
+  <script src="../static/JS/Fotter.js"></script>
+</html>

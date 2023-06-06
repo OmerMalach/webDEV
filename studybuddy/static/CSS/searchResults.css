@@ -1,0 +1,112 @@
+h2 {
+  text-align: center;
+  color: #517276;
+  margin-top: 7px;
+}
+.search-container label {
+  width: 90%;
+  font-size: 17px;
+  padding: 10px 10px;
+  display: block;
+  justify-content: center;
+  justify-self: center;
+  text-align: center;
+  color: #517276;
+}
+.search-container {
+  justify-content: center;
+  text-align: center;
+  padding: 5px 10px;
+}
+.search-container input[type="text"] {
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 420px;
+  text-align: left; /* for hebrew we should do right? */
+}
+#filter-button {
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 15px;
+}
+#filter-button:hover {
+  background-color: #36e23c;
+}
+.summary-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px 10px;
+}
+
+.summary-board > div {
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 1fr;
+}
+.summary-board > div:hover {
+  margin: 2px;
+  border: 1px solid #f1f8d6;
+  border-radius: 15px;
+}
+.summary-board > div h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px;
+  color: #1a5c67;
+}
+.summary-board > div p {
+  margin: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.summary-board > div a {
+  display: block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0366d6;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.summary-board > div p:nth-of-type(2) {
+  font-style: italic;
+}
+
+@media only screen and (max-width: 858px) {
+  .search-container input[type="text"] {
+    width: 300px;
+  }
+
+  h2 {
+    padding: 10px;
+  }
+  #filter-button {
+    margin-top: 10px;
+    padding: 10px 80px;
+  }
+  .summary-board > div h3 {
+    font-size: 13px;
+  }
+  .summary-board > div p {
+    font-size: 11px;
+  }
+  .summary-board > div a {
+    font-size: 15px;
+  }
+  img {
+    width: 280px;
+    padding: 5px 20px;
+    line-height: 60px;
+  }
+}

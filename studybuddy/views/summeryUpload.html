@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyBuddy:SummeryUpload</title>
+    <link rel="stylesheet" href="../static/CSS/app.css" />
+    <link rel="stylesheet" href="../static/CSS/summaryUpload.css" />
+    <link rel="icon" href="../static/photos/icon.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/7d07e6b941.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <nav>
+    <img src="../static/photos/logo2.png" alt="StudyBudy" />
+    <ul id="navbar">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="thelibrary.html">The library</a></li>
+      <li><a href="summarySearch.html">Summary Search</a></li>
+      <li><a href="mySummaries.html">My Summaries</a></li>
+      <li><a class="active" href="summeryUpload.html">Summary Upload</a></li>
+    </ul>
+    <input type="checkbox" name="checkbox" id="check" />
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars" id="menu-icon"></i>
+    </label>
+  </nav>
+  <body>
+    <main>
+      <h1>Summary Upload</h1>
+      <div class="container">
+        <form id="uploadForm">
+          <div class="form-row">
+            <label for="input1">Course number:</label>
+            <input type="text" id="input1" name="course-number" required />
+          </div>
+          <div class="form-row">
+            <label for="input2">Course Name:</label>
+            <input type="text" id="input2" name="course-name" required />
+          </div>
+          <div class="form-row">
+            <label for="input3">Year:</label>
+            <input type="number" id="input3" name="year" required />
+          </div>
+          <div class="form-row">
+            <label for="input4">Semester:</label>
+            <select id="input4" name="semester" required>
+              <option value="">Select semester</option>
+              <option value="summer">Summer</option>
+              <option value="winter">Winter</option>
+              <option value="fall">Fall</option>
+              <option value="spring">Spring</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="input5">Summary name:</label>
+            <input type="text" id="input5" name="summary-name" required />
+          </div>
+          <div id="file-box">
+            <div class="handle"></div>
+            <div class="content">
+              <p>Drag and drop your file here</p>
+              <input type="file"  name="file" id="file-input" required />
+            </div>
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+    </main>
+  </body>
+  <footer>
+    <div class="footer-links">
+      <a href="#" id="contact-us-link">Contact Us</a>
+      <a href="#" id="about-us-link">About Us</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/" target="_blank"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+      <a href="https://www.instagram.com/" target="_blank"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a href="https://www.twitter.com/" target="_blank"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    </div>
+    <div class="footer-text">© 2023 All Rights Reserved, StuddyBuddy®</div>
+  </footer>
+  <script src="../static/JS/menu.js"></script>
+  <script src="../static/JS/Fotter.js"></script>
+  <script src="../static/JS/SummeryUpload.js"></script>
+</html>

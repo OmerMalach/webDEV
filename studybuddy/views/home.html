@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyBudy:Home</title>
+    <link rel="stylesheet" href="../static/CSS/app.css" />
+    <link rel="stylesheet" href="../static/CSS/home.css" />
+    <link rel="icon" href="../static/photos/icon.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/7d07e6b941.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <nav>
+    <img src="../static/photos/logo2.png" alt="StudyBudy" />
+    <ul id="navbar">
+      <li><a class="active" href="home.html">Home</a></li>
+      <li><a href="thelibrary.html">The library</a></li>
+      <li><a href="summarySearch.html">Summary Search</a></li>
+      <li><a href="mySummaries.html">My Summaries</a></li>
+      <li><a href="summeryUpload.html">Summary Upload</a></li>
+    </ul>
+    <input type="checkbox" id="check" name="checkbox" />
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars" id="menu-icon"></i>
+    </label>
+  </nav>
+  <div class="search-container">
+    <input
+      type="text"
+      name="search"
+      placeholder="Search for friends..."
+      id="search-input"
+    />
+    <button type="submit" id="search-button">
+      <i class="fa fa-search" id="search-icon"></i>
+    </button>
+  </div>
+  <form action="/newpost" method="POST">
+    <div class="post-container">
+      <input
+        type="text"
+        name="post"
+        placeholder="Post summary requests as needed and ask your community for help..."
+        id="post-textarea"
+      />
+      <button type="submit" id="post-button"><i> Post </i></button>
+    </div>
+  </form>
+  <body>
+    <header>
+      <div class="profile-info">
+        <img src="../static/photos/myprofile.png" alt="Profile Picture" />
+        <h1 class="username">Omer Malach</h1>
+        <div class="credit-indicator">
+          <p>Credits:</p>
+          <span>42</span>
+          <button type="submit" class="gain-credit" id="credit-button">
+            Gain Credit
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <h2>My Posts</h2>
+      <section class="posts" id="wall">
+        <!-- Insert code for posts here -->
+      </section>
+    </main>
+    <section class="summaries-container">
+      <h2>My Summaries</h2>
+      <h3>Here you can easily view and redownload past summary uploads...</h3>
+      <!-- Insert code for summaries here -->
+    </section>
+  </body>
+  <footer>
+    <div class="footer-links">
+      <a href="#" id="contact-us-link">Contact Us</a>
+      <a href="#" id="about-us-link">About Us</a>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/" target="_blank"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+      <a href="https://www.instagram.com/" target="_blank"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a href="https://www.twitter.com/" target="_blank"
+        ><i class="fab fa-twitter"></i
+      ></a>
+    </div>
+
+    <div class="footer-text">© 2023 All Rights Reserved, StuddyBuddy®</div>
+  </footer>
+  <script src="../static/JS/menu.js"></script>
+  <script src="../static/JS/buddySearch.js"></script>
+  <script src="../static/JS/gainCredit.js"></script>
+  <script src="../static/JS/homeMySummaries.js"></script>
+  <script src="../static/JS/homeMyposts.js"></script>
+  <script src="../static/JS/Fotter.js"></script>
+</html>
