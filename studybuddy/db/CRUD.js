@@ -58,16 +58,25 @@ const createNewPost = (req, res) => {
 
 const createNewSummary = async (req, res) => {
   // Validate request maybe we should add some more checks
-  if (!req.body) {
+  if (!req.body || !req.file) {
+    console.log(req.file);
+    if (!req.file) {
+      res.status(400).send({
+        message:
+          "Summary details cccccccc or the actual file can not be empty!",
+      });
+      return;
+    }
     res.status(400).send({
-      message: "Summary can not be empty!",
+      message: "Summary details or the actual file can not be empty!",
     });
     return;
   }
-
   try {
-    var summary = req.body.file;
+    console.log("try1");
+    var summary = req.file;
     var sumURL = await GdriveUpload(summary);
+    console.log("try2");
     var now = new Date();
     var datetime = now.toISOString().slice(0, 19).replace("T", " ");
 

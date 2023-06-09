@@ -70,13 +70,41 @@ function handleFileSelect(e) {
     uploadedFileName +
     '". You can only upload one file at a time, feel free to drag and drop again to replace the file.</p>';
 }
-
 // Handle form submission
 document.querySelector("#uploadForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+  let formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+  // Add other form fields to formData
+  formData.append("nameOfSummary", document.querySelector("#input5").value);
+  formData.append("Teacher", document.querySelector("#input5").value);
+  formData.append("courseNumber", document.querySelector("#input1").value);
+  formData.append("nameOfCourse", document.querySelector("#input2").value);
+  formData.append("year", document.querySelector("#input3").value);
+  formData.append("semester", document.querySelector("#input4").value);
+
+  fetch("/newsummary", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Form data submitted successfully");
+      } else {
+        throw new Error("Error submitting form data");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+/*
+// Handle form submission
+document.querySelector("#uploadForm").addEventListener("submit", function (e) {
+  //e.preventDefault();
 
   let formData = new FormData();
   formData.append("file", fileInput.files[0]);
 
   // TODO: Add other form fields to formData
 });
+*/

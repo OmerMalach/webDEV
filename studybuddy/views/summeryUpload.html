@@ -30,14 +30,19 @@
     <main>
       <h1>Summary Upload</h1>
       <div class="container">
-        <form id="uploadForm" action="/newsummary" method="POST">
+        <form
+          id="uploadForm"
+          action="/newsummary"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           <div class="form-row">
             <label for="input5">Summary name:</label>
             <input type="text" id="input5" name="nameOfSummary" required />
           </div>
           <div class="form-row">
             <label for="input5">Teacher:</label>
-            <input type="text" id="input5" name="Teacher" required />
+            <input type="text" id="input6" name="Teacher" required />
           </div>
           <div class="form-row">
             <label for="input1">Course number:</label>
