@@ -32,7 +32,31 @@ const createNewPost = (req, res) => {
   // get datetime
   var now = new Date();
   var datetime = now.toISOString().slice(0, 19).replace("T", " ");
-  console.log(datetime); // Example output: 2023-06-06 12:34:56
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Post can not be empty!",
+    });
+    return;
+  }
+  const newPost = {
+    DateTime: datetime,
+    Text: req.body.post,
+    Poster_ID: 1, // where should i get it from????
+  };
+
+  sql.query("INSERT INTO Post SET ?", newPost, (err, mysqlres) => {
+    if (err) {
+      console.log("error: ", err);
+      res.status(400).send({ message: "error in creating post: " + err });
+      return;
+    }
+    console.log("created new post: ", { id: mysqlres.insertId });
+    return;
+  });
+};
+
+const createNewSummary = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({

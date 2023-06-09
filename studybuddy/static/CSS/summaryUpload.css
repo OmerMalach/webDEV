@@ -81,7 +81,7 @@ button:hover {
   font-size: 25px;
   padding: 10px 20px;
   margin-top: 10px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -91,6 +91,15 @@ button:hover {
 
 #file-box .content {
   padding: 30px;
+}
+
+#file-box.highlight {
+  border-color: #4b5de4;
+  border-width: 4.2px;
+}
+#file-box.droped {
+  border-color: #7fb46c;
+  border-width: 4.2px;
 }
 
 @media screen and (max-width: 768px) {
