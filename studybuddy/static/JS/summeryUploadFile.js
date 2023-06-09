@@ -65,8 +65,11 @@ function handleFileSelect(e) {
   // Hide the drag and drop prompt and the file input after file is dropped
   document.querySelector("#file-box p").style.display = "none";
   // document.querySelector("#file-input").style.display = "none";
+  let uploadedFileName = files[0].name;
   document.querySelector("#file-box .content").innerHTML =
-    '<p>You can only upload one file at a time, feel free to drag and drop again to replace the file.</p><input type="file" name="file" id="file-input" required />';
+    '<p>Uploaded "' +
+    uploadedFileName +
+    '". You can only upload one file at a time, feel free to drag and drop again to replace the file.</p>';
 }
 
 // Handle form submission

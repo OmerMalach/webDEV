@@ -24,7 +24,9 @@ function createPostHTML(post) {
       <p class="post-content">${post.post}</p>
       <div class="comment-section">
         <input type="text" placeholder="Leave a comment" class="comment-input">
-        <button class="comment-button" data-author="${post.author}">Comment</button>
+        <button class="comment-button" data-author="${
+          post.author
+        }">Comment</button>
         <ul class="comment-list"></ul>
       </div>
     </div>
@@ -34,14 +36,14 @@ function createPostHTML(post) {
 function formatTimestamp(timestamp) {
   const date = new Date(timestamp);
   const options = {
-    hour: 'numeric',
-    minute: 'numeric',
+    hour: "numeric",
+    minute: "numeric",
     hour12: true,
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
   };
-  return date.toLocaleString('en-US', options);
+  return date.toLocaleString("en-US", options);
 }
 
 // Function to render the posts on the page
@@ -85,7 +87,7 @@ function handleCommentSubmission(event) {
   const comment = commentInput.value;
   if (comment) {
     const commentData = {
-      author: "Omer Malach",
+      author: "Omer Malach", // change to cookies shmikels
       text: comment,
     };
     const commentHTML = createCommentHTML(commentData);
