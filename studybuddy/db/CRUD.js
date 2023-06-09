@@ -1,6 +1,6 @@
 const sql = require("./db");
 const path = require("path");
-
+const Gdrive = require("./Gdrive");
 //post
 const createNewUser = (req, res) => {
   // Validate request
@@ -56,9 +56,7 @@ const createNewPost = (req, res) => {
   });
 };
 
-const createNewSummary = (req, res) => {
-  var now = new Date();
-  var datetime = now.toISOString().slice(0, 19).replace("T", " ");
+const createNewSummary = async (req, res) => {
   // Validate request maybe we should add some more checks
   if (!req.body) {
     res.status(400).send({
@@ -67,27 +65,39 @@ const createNewSummary = (req, res) => {
     return;
   }
 
-  const newSummary = {
-    Name_Summery: req.body.nameOfSummary,
-    Course_Number: req.body.courseNumber,
-    Course_Number: req.body.nameOfCourse,
-    teacher: req.body.post,
-    Year: req.body.year,
-    Semester: req.body.semester,
-    numDownloads: 0,
-    uploadDate: req.body.datetime,
-    uploader_id: req.body.post, // a cookie related shmikel
-  };
+  try {
+    var summary = req.body.file;
+    var sumURL = await GdriveUpload(summary);
+    var now = new Date();
+    var datetime = now.toISOString().slice(0, 19).replace("T", " ");
 
-  sql.query("INSERT INTO Summary SET ?", newSummary, (err, mysqlres) => {
-    if (err) {
-      console.log("error: ", err);
-      res.status(400).send({ message: "error in creating Summary: " + err });
+    const newSummary = {
+      Name_Summery: req.body.nameOfSummary,
+      Course_Number: req.body.courseNumber,
+      Course_Name: req.body.nameOfCourse,
+      teacher: req.body.post,
+      Year: req.body.year,
+      Semester: req.body.semester,
+      numDownloads: 0,
+      uploadDate: datetime,
+      summaryUrl: sumURL,
+      uploader_id: req.body.post, // a cookie related shmikel
+    };
+
+    sql.query("INSERT INTO Summary SET ?", newSummary, (err, mysqlres) => {
+      if (err) {
+        console.log("error: ", err);
+        res.status(400).send({ message: "error in creating Summary: " + err });
+        return;
+      }
+      console.log("created new Summary: ", { id: mysqlres.insertId });
       return;
-    }
-    console.log("created new Summary: ", { id: mysqlres.insertId });
+    });
+  } catch (err) {
+    console.log("Error uploading file: ", err);
+    res.status(500).send({ message: "Error uploading file: " + err });
     return;
-  });
+  }
 };
 
 const createNewdownload = (req, res) => {
@@ -133,6 +143,7 @@ const showAll = (req, res) => {
     return;
   });
 };
+
 module.exports = {
   createNewUser,
   createNewPost,

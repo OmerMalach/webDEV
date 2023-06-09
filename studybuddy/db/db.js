@@ -7,16 +7,9 @@ const connection = mysql.createConnection({
   password: dbConfig.PASSWORD,
   database: dbConfig.DB,
 });
-
-const oauth2Client = new OAuth2Client(
-  "your-client-id",
-  "your-client-secret",
-  "your-redirect-uri"
-);
-
 // open the MySQL connection
 connection.connect((error) => {
   if (error) throw error;
   console.log("Successfully connected to the database.");
 });
-module.exports = { connection, oauth2Client };
+module.exports = { connection };

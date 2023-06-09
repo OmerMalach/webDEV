@@ -64,7 +64,6 @@ function handleFileSelect(e) {
   fileInput.files = files;
   // Hide the drag and drop prompt and the file input after file is dropped
   document.querySelector("#file-box p").style.display = "none";
-  // document.querySelector("#file-input").style.display = "none";
   let uploadedFileName = files[0].name;
   document.querySelector("#file-box .content").innerHTML =
     '<p>Uploaded "' +
