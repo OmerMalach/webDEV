@@ -62,6 +62,11 @@ function handleFileSelect(e) {
   }
 
   fileInput.files = files;
+  // Hide the drag and drop prompt and the file input after file is dropped
+  document.querySelector("#file-box p").style.display = "none";
+  // document.querySelector("#file-input").style.display = "none";
+  document.querySelector("#file-box .content").innerHTML =
+    '<p>You can only upload one file at a time, feel free to drag and drop again to replace the file.</p><input type="file" name="file" id="file-input" required />';
 }
 
 // Handle form submission
