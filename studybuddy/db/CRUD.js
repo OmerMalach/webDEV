@@ -16,16 +16,20 @@ const createNewUser = (req, res) => {
     Password: req.body.password,
     Phone_number: req.body.phone,
   };
-  sql.query("INSERT INTO student SET ?", newUser, (err, mysqlres) => {
-    if (err) {
-      console.log("error: ", err);
-      res.status(400).send({ message: "error in creating user: " + err });
+  sql.connection.query(
+    "INSERT INTO student SET ?",
+    newUser,
+    (err, mysqlres) => {
+      if (err) {
+        console.log("error: ", err);
+        res.status(400).send({ message: "error in creating user: " + err });
+        return;
+      }
+      console.log("created new user: ", { id: mysqlres.insertId });
+      res.sendFile(path.join(__dirname, "../views/LoginPage.html"));
       return;
     }
-    console.log("created new user: ", { id: mysqlres.insertId });
-    res.sendFile(path.join(__dirname, "../views/LoginPage.html"));
-    return;
-  });
+  );
 };
 
 const createNewPost = (req, res) => {
@@ -54,59 +58,6 @@ const createNewPost = (req, res) => {
     console.log("created new post: ", { id: mysqlres.insertId });
     return;
   });
-};
-
-const createNewSummary = async (req, res) => {
-  // Validate request maybe we should add some more checks
-  if (!req.body || !req.file) {
-    console.log(req.file);
-    if (!req.file) {
-      res.status(400).send({
-        message:
-          "Summary details cccccccc or the actual file can not be empty!",
-      });
-      return;
-    }
-    res.status(400).send({
-      message: "Summary details or the actual file can not be empty!",
-    });
-    return;
-  }
-  try {
-    console.log("try1");
-    var summary = req.file;
-    var sumURL = await GdriveUpload(summary);
-    console.log("try2");
-    var now = new Date();
-    var datetime = now.toISOString().slice(0, 19).replace("T", " ");
-
-    const newSummary = {
-      Name_Summery: req.body.nameOfSummary,
-      Course_Number: req.body.courseNumber,
-      Course_Name: req.body.nameOfCourse,
-      teacher: req.body.post,
-      Year: req.body.year,
-      Semester: req.body.semester,
-      numDownloads: 0,
-      uploadDate: datetime,
-      summaryUrl: sumURL,
-      uploader_id: req.body.post, // a cookie related shmikel
-    };
-
-    sql.query("INSERT INTO Summary SET ?", newSummary, (err, mysqlres) => {
-      if (err) {
-        console.log("error: ", err);
-        res.status(400).send({ message: "error in creating Summary: " + err });
-        return;
-      }
-      console.log("created new Summary: ", { id: mysqlres.insertId });
-      return;
-    });
-  } catch (err) {
-    console.log("Error uploading file: ", err);
-    res.status(500).send({ message: "Error uploading file: " + err });
-    return;
-  }
 };
 
 const createNewdownload = (req, res) => {
@@ -156,7 +107,6 @@ const showAll = (req, res) => {
 module.exports = {
   createNewUser,
   createNewPost,
-  createNewSummary,
   createNewdownload,
   showAll,
 };
