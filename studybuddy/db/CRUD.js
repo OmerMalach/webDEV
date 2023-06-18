@@ -106,40 +106,77 @@ const showAll = (req, res) => {
   });
 };
 
+// const login = (req, res) => {
+//   // Validate request
+//   if (!req.body) {
+//     res.status(400).send({
+//       message: "Content can not be empty!",
+//     });
+//     return;
+//   }
+//   const newlogin = {
+//     Nickname: req.body.username,
+//     Password: req.body.password,
+//   };
+
+//   sql.connection.query(
+//     "SELECT * FROM student WHERE Nickname = '" +
+//       req.body.username +
+//       "' AND Password = '" +
+//       req.body.password +
+//       "'",
+//     newlogin,
+//     (err, mysqlres) => {
+//       if (err) {
+//         console.log("error: ", err);
+//         res.status(400).send({ message: "error in login: " + err });
+//         return;
+//       }
+//       console.log(mysqlres);
+//       if (mysqlres[0] == null) {
+//         console.log(
+//           "The User NickName you just entered is wrong, please try again :)"
+//         );
+//       }
+//       // if ((mysqlres[0].Nickname==null) || (mysqlres[0].password==null)){
+//       //   alert("The User NickName you just entered is wrong, please try again :)")
+//       // }
+//       console.log("login success: ", { username: mysqlres[0].Nickname });
+//       res.render("home"); // Render the LoginPage.pug template
+//       return;
+//     }
+//   );
+// };
+
 const login = (req, res) => {
   // Validate request
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
+  if (!req.body || !req.body.username || !req.body.password) {
+    res.render("loginPage", { error: "username or password cant be empty!" });
   }
-  const newlogin = {
-    Nickname: req.body.username,
-    Password: req.body.password,
-  };
+
+  const username = req.body.username;
+  const password = req.body.password;
 
   sql.connection.query(
-    "SELECT * FROM student WHERE Nickname = '" +
-      req.body.username +
-      "' AND Password = '" +
-      req.body.password +
-      "'",
-    newlogin,
+    "SELECT * FROM student WHERE Nickname = ? AND Password = ?",
+    [username, password],
     (err, mysqlres) => {
       if (err) {
-        console.log("error: ", err);
-        res.status(400).send({ message: "error in login: " + err });
+        console.log("Error: ", err);
+        res.status(400).send({ message: "Error in login: " + err });
         return;
       }
 
-      console.log("login success: ", { username: mysqlres[0].Nickname });
-      res.render("home"); // Render the LoginPage.pug template
-      return;
+      if (mysqlres.length === 0) {
+        // User not found in the database
+        res.render("loginPage", { error: "Invalid username or password" });
+        return;
+      }
+      console.log("Login success: ", { username: mysqlres[0].Nickname });
+      res.render("home"); // Render the home.pug template
     }
   );
 };
-
 module.exports = {
   createNewUser,
   createNewPost,
