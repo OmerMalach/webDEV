@@ -106,48 +106,6 @@ const showAll = (req, res) => {
   });
 };
 
-// const login = (req, res) => {
-//   // Validate request
-//   if (!req.body) {
-//     res.status(400).send({
-//       message: "Content can not be empty!",
-//     });
-//     return;
-//   }
-//   const newlogin = {
-//     Nickname: req.body.username,
-//     Password: req.body.password,
-//   };
-
-//   sql.connection.query(
-//     "SELECT * FROM student WHERE Nickname = '" +
-//       req.body.username +
-//       "' AND Password = '" +
-//       req.body.password +
-//       "'",
-//     newlogin,
-//     (err, mysqlres) => {
-//       if (err) {
-//         console.log("error: ", err);
-//         res.status(400).send({ message: "error in login: " + err });
-//         return;
-//       }
-//       console.log(mysqlres);
-//       if (mysqlres[0] == null) {
-//         console.log(
-//           "The User NickName you just entered is wrong, please try again :)"
-//         );
-//       }
-//       // if ((mysqlres[0].Nickname==null) || (mysqlres[0].password==null)){
-//       //   alert("The User NickName you just entered is wrong, please try again :)")
-//       // }
-//       console.log("login success: ", { username: mysqlres[0].Nickname });
-//       res.render("home"); // Render the LoginPage.pug template
-//       return;
-//     }
-//   );
-// };
-
 const login = (req, res) => {
   // Validate request
   if (!req.body || !req.body.username || !req.body.password) {
