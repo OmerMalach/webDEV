@@ -1,0 +1,52 @@
+- var currentPage = 'summeryUpload'
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title StudyBuddy:SummeryUpload
+  link(rel='stylesheet' href='/CSS/app.css')
+  link(rel='stylesheet' href='/CSS/summaryUpload.css')
+  link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
+  script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
+nav
+  include navBar
+main
+  h1 Summary Upload
+  .container
+    form#uploadForm(action='/newSummary' method='POST' enctype='multipart/form-data')
+      .form-row
+        label(for='input5') Summary name:
+        input#input5(type='text' name='nameOfSummary' required='')
+      .form-row
+        label(for='input5') Teacher:
+        input#input6(type='text' name='Teacher' required='')
+      .form-row
+        label(for='input1') Course number:
+        input#input1(type='text' name='courseNumber' required='')
+      .form-row
+        label(for='input2') Course Name:
+        input#input2(type='text' name='nameOfCourse' required='')
+      .form-row
+        label(for='input3') Year:
+        input#input3(type='number' name='year' required='')
+      .form-row
+        label(for='input4') Semester:
+        select#input4(name='semester' required='')
+          option(value='') Select semester
+          option(value='summer') Summer
+          option(value='winter') Winter
+          option(value='fall') Fall
+          option(value='spring') Spring
+      #file-box
+        .handle
+        .content
+          p Drag and drop your file here
+          input#file-input(type='file' name='file' required='')
+      button(type='submit') Save Changes
+footer
+    include footer
+script(src='/JS/menu.js')
+script(src='/JS/Fotter.js')
+script(src='/JS/SummeryUpload.js')
+script(src='/JS/SummeryUploadFile.js')
+

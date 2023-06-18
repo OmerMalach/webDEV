@@ -1,6 +1,9 @@
 const sql = require("./db");
 const path = require("path");
 const Gdrive = require("./Gdrive");
+const mysql = require('mysql');
+
+
 //post
 const createNewUser = (req, res) => {
   // Validate request
@@ -10,20 +13,23 @@ const createNewUser = (req, res) => {
     });
     return;
   }
+
   const newUser = {
     Nickname: req.body.username,
     Email: req.body.email,
     Password: req.body.password,
     Phone_number: req.body.phone,
   };
-  sql.query("INSERT INTO student SET ?", newUser, (err, mysqlres) => {
+
+  sql.connection.query("INSERT INTO student SET ?", newUser, (err, mysqlres) => {
     if (err) {
       console.log("error: ", err);
       res.status(400).send({ message: "error in creating user: " + err });
       return;
     }
+
     console.log("created new user: ", { id: mysqlres.insertId });
-    res.sendFile(path.join(__dirname, "../views/LoginPage.html"));
+    res.render("LoginPage"); // Render the LoginPage.pug template
     return;
   });
 };
@@ -153,10 +159,56 @@ const showAll = (req, res) => {
   });
 };
 
+
+
+const login = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+
+  const newlogin = {
+    Nickname: req.body.username,
+    Password: req.body.password,
+  };
+
+  sql.connection.query("SELECT * FROM student WHERE Nickname = '" + req.body.username + "' AND Password = '" + req.body.password + "'", newlogin, (err, mysqlres) => {
+    if (err) {
+      console.log("error: ", err);
+      res.status(400).send({ message: "error in login: " + err });
+      return;
+    }
+
+    console.log("login success: ", { username: mysqlres[0].Nickname });
+    res.render("home"); // Render the LoginPage.pug template
+    return;
+  });
+};
+
+
+
+
+
+
+
 module.exports = {
   createNewUser,
   createNewPost,
   createNewSummary,
   createNewdownload,
   showAll,
+  login, // Add the login function to the exports
 };
+
+
+
+
+
+
+
+
+
+

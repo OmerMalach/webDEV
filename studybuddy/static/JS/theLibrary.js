@@ -1,7 +1,7 @@
 // Function to fetch the JSON data
 async function fetchPosts() {
   try {
-    const response = await fetch("../static/mockData/TheLibrary.json");
+    const response = await fetch("/mockData/TheLibrary.json");
     const data = await response.json();
     return data.posts;
   } catch (error) {
@@ -11,7 +11,7 @@ async function fetchPosts() {
 }
 
 function createPostHTML(post) {
-  const authorPhoto = post.authorPhoto || "../static/photos/nullProfilePic.png";
+  const authorPhoto = post.authorPhoto || "/photos/nullProfilePic.png";
 
   const postHTML = `
     <div class="post-container">

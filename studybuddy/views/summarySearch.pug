@@ -1,0 +1,45 @@
+- var currentPage = 'summarySearch'
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title StudyBudy: SummarySearch
+  link(rel='stylesheet' href='/CSS/app.css')
+  link(rel='stylesheet' href='/CSS/summarySearch.css')
+  link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
+  script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
+nav
+  include navBar
+main
+  h1 Search Summary
+  .container
+    form#searchForm(action='/' method='GET')
+      .form-row
+        label(for='input1') Course number:
+        input#input1(type='text' name='course-number')
+      .form-row
+        label(for='input3') Year:
+        input#input3(type='number' name='year' min='1900' max='2099')
+      .form-row
+        label(for='input4') Semester:
+        select#input4(name='semester')
+          option(value='') Select a semester
+          option(value='summer') Summer
+          option(value='winter') Winter
+          option(value='fall') Fall
+          option(value='spring') Spring
+      .form-row
+        label(for='input5') Rate:
+        select#input5(name='rate')
+          option(value='' disabled='' selected='') Select rate
+          option(value='1') 1
+          option(value='2') 2
+          option(value='3') 3
+          option(value='4') 4
+          option(value='5') 5
+      button#search-button(type='submit') Submit
+footer
+     include footer
+script(src='/JS/menu.js')
+script(src='/JS/summarySearch.js')
+script(src='../static/JS/Fotter.js')

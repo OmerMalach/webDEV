@@ -1,0 +1,43 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title StudyBudy:BuddySearchResults
+  link(rel='stylesheet' href='/CSS/app.css')
+  link(rel='stylesheet' href='/CSS/buddySearchResults.css')
+  link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
+  script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
+nav
+  img(src='../static/photos/logo2.png' alt='StudyBudy')
+  ul#navbar
+    li
+      a(href='/home') Home
+    li
+      a(href='/theLibrary') The library
+    li
+      a(href='/summarySearch') Summary Search
+    li
+      a(href='/mySummaries') My Summaries
+    li
+      a(href='/summeryUpload') Summary Upload
+  input#check(type='checkbox' name='checkbox')
+  label.checkbtn(for='check')
+    i#menu-icon.fas.fa-bars
+main
+  .container
+    h1 Buddy Search Results
+    h2 Get Social..
+    .search-container
+      form#filter-form(action='#')
+        label(for='keyword')
+        input#keyword(type='text' name='keyword')
+        button#search-button(type='submit')
+          | BSearch
+          i
+    .buddy-board
+      // buddy- cards will be generated here
+footer
+     include footer
+script(src='/JS/buddySearchResults.js')
+script(src='/JS/menu.js')
+script(src='/JS/Fotter.js')

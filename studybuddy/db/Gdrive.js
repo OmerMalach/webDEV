@@ -4,12 +4,10 @@ const { google } = require("googleapis");
 const { OAuth2Client } = require("google-auth-library");
 const fs = require("fs");
 
-const CLIENT_ID =
-  "400315462079-13dgnaqavlnficsh8saoq97pqbajfk99.apps.googleusercontent.com";
-const CLIENT_secret = "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";
-const REDIRECT_URI = "https:/developers.google.com/oauthplayground";
-const REFRESH_TOKEN =
-  "1//04GZSwD6ILCZaCgYIARAAGAQSNwF-L9IrkNe0din7KTbV-TzOZY8IUu0ln-VV0IP7brmOLctjEb-2ENbv6Bjr-qB49Z6wc9BRD-o";
+const CLIENT_ID = '400315462079-13dgnaqavlnficsh8saoq97pqbajfk99.apps.googleusercontent.com';
+const CLIENT_secret = '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';
+const REDIRECT_URI = 'https:/developers.google.com/oauthplayground';
+const REFRESH_TOKEN ='1//04GZSwD6ILCZaCgYIARAAGAQSNwF-L9IrkNe0din7KTbV-TzOZY8IUu0ln-VV0IP7brmOLctjEb-2ENbv6Bjr-qB49Z6wc9BRD-o';
 
 const oauth2Client = new google.auth.OAuth2(
   CLIENT_ID,

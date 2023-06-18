@@ -1,0 +1,33 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  title Contact Us
+  link(rel='stylesheet' href='/CSS/ContactUs.css')
+  script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+header
+  .title StuddyBuddy
+  .subtitle Social Network for Summaries
+.container
+  h1 Contact Us
+  p
+    | We&apos;d love to hear from you! If you have any questions, feedback, or
+    | inquiries, please feel free to get in touch with us using the contact
+    | details below or by filling out the form. We&apos;ll get back to you as soon
+    | as possible.
+  .contact-details
+    .contact-item
+      i.fas.fa-envelope
+      span Email: contact@studdybuddy.com
+    .contact-item
+      i.fas.fa-phone
+      span Phone: +1 123-456-7890
+    .contact-item
+      i.fas.fa-map-marker-alt
+      span Address: 123 Main Street, City, Country
+  form.contact-form
+    input(type='text' name='name' placeholder='Your Name')
+    input(type='email' name='email' placeholder='Your Email')
+    textarea(name='message' placeholder='Your Message')
+    button(type='submit') Send Message
+.footer-container
+  .footer-text &copy; 2023 All Rights Reserved, StuddyBuddy&reg;

@@ -1,0 +1,29 @@
+html
+head
+  meta(charset='UTF-8')
+  link(rel='stylesheet' href='CSS/NewAccount.css')
+  title StudyBudy: Sign Up
+  script(src='https://kit.fontawesome.com/47bff8e4ff.js' crossorigin='anonymous')
+.sidebar
+  a(href='/LoginPage') Return to Home Page
+  i.fa.fa-home(aria-hidden='true')
+header
+  .title StuddyBuddy
+.container
+  h1 Create Account
+  form(action='/signup' method='POST')
+    input(type='text' name='username' placeholder='Username')
+    i.fa.fa-user(aria-hidden='true')
+    input(type='text' name='email' placeholder='Email')
+    i.fa.fa-envelope-square(aria-hidden='true')
+    input(type='password' name='password' placeholder='Password')
+    i.fa.fa-unlock-alt(aria-hidden='true')
+    input(type='password' name='passwordVerify' placeholder='Password Verification')
+    i.fa.fa-unlock-alt(aria-hidden='true')
+    input(type='text' name='phone' placeholder='Phone number')
+    i.fa.fa-mobile(aria-hidden='true')
+    button(type='submit') create account
+include footer
+script(src='/JS/Fotter.js')
+script(src='/JS/NewAccount.js')
+

@@ -1,0 +1,30 @@
+- var currentPage = 'mySummaries'
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title StudyBudy:My Summaries
+  link(rel='stylesheet' href='/CSS/app.css')
+  link(rel='stylesheet' href='/CSS/searchResults.css')
+  link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
+  script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
+nav
+   include navBar
+main
+  .container
+    h1 My Summaries
+    h2 Here you can find your downloaded summaries history...
+    .search-container
+      form#filter-form(action='/filter-result')
+        label(for='keyword') Filter by summery name, uploader name or course number:
+        input#keyword(type='text' name='keyword')
+        button#filter-button(type='submit')
+          | Filter
+          i
+    .summary-board
+      // Summary cards will be generated here
+footer
+  include footer
+script(src='/JS/mySummaries.js')
+script(src='/JS/menu.js')
+script(src='/JS/Fotter.js')

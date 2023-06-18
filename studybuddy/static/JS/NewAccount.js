@@ -16,7 +16,6 @@ function validateEmail(email) {
 
 // Event listener for form submission
 document.querySelector("form").addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent form submission
 
   // Get input values
   const usernameInput = document.querySelector(

@@ -1,4 +1,4 @@
-/*
+
 document
   .getElementById("uploadForm")
   .addEventListener("submit", function (event) {
@@ -42,4 +42,4 @@ document
     // Show success message
     alert("Summary uploaded successfully!");
   });
-*/
+

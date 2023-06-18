@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet", href="CSS/app.css")
+    link(rel="stylesheet", href="CSS/LoginPage.css")
+    script(src="https://kit.fontawesome.com/47bff8e4ff.js", crossorigin="anonymous")
+    title StudyBuddy: Login
+  body
+    header
+      .title StuddyBuddy
+      .subtitle Get Social, get studying, get ahead.
+    .container
+      h1 Login
+      form.login-form(action="/LoginPage", method="POST")
+        input#username(type="text", name="username", placeholder="Username")
+        i.fa.fa-user(aria-hidden="true")
+        input#password(type="password", name="username", placeholder="Password", autocomplete="current-password")
+        i.fa.fa-unlock-alt(aria-hidden="true")
+        button(type="submit") Login
+      .form-bottom-links
+        a.create-account-btn(href='/new-account') Create New Account
+        a.forgot-password-btn(href='/forgot-password') Forgot Password?
+      #picture-container(style=`
+          background-image: url('http://clipart-library.com/images_k/books-transparent-background/books-transparent-background-11.png');
+        `)
+include footer
+script(src="/JS/Fotter.js")
+script(src="/JS/LoginPage.js")
+

@@ -1,0 +1,17 @@
+nav
+  img(src='/photos/logo2.png', alt='StudyBuddy')
+  ul#navbar
+    li
+      a(href='/home', class=(currentPage === 'home' ? 'active' : '')) Home
+    li
+      a(href='/theLibrary', class=(currentPage === 'theLibrary' ? 'active' : '')) The Library
+    li
+      a(href='/summarySearch', class=(currentPage === 'summarySearch' ? 'active' : '')) Summary Search
+    li
+      a(href='/mySummaries', class=(currentPage === 'mySummaries' ? 'active' : '')) My Summaries
+    li
+      a(href='/summeryUpload', class=(currentPage === 'summeryUpload' ? 'active' : '')) Summary Upload
+  input#check(type='checkbox' name='checkbox')
+  label.checkbtn(for='check')
+    i#menu-icon.fas.fa-bars
+

@@ -35,29 +35,4 @@ async function validateUser(username, password) {
   return foundUser !== undefined;
 }
 
-function redirectToHomePage() {
-  window.location.href = "home.html";
-}
 
-document
-  .querySelector(".create-account-btn")
-  .addEventListener("click", function () {
-    moveToCreateAccount();
-  });
-
-// Function to move to the Create Account page
-function moveToCreateAccount() {
-  window.location.href = "NewAccount.html";
-}
-
-// Add event listener to the Forgot Password button
-document
-  .querySelector(".forgot-password-btn")
-  .addEventListener("click", function () {
-    moveToForgetPassword();
-  });
-
-// Function to move to the Forgot Password page
-function moveToForgetPassword() {
-  window.location.href = "ForgetPassword.html";
-}
