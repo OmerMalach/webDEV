@@ -1,8 +1,4 @@
 const sql = require("./db");
-const path = require("path");
-const Gdrive = require("./Gdrive");
-const mysql = require('mysql');
-
 
 //post
 const createNewUser = (req, res) => {
@@ -21,21 +17,22 @@ const createNewUser = (req, res) => {
     Phone_number: req.body.phone,
   };
 
+  sql.connection.query(
+    "INSERT INTO student SET ?",
+    newUser,
+    (err, mysqlres) => {
+      if (err) {
+        console.log("error: ", err);
+        res.status(400).send({ message: "error in creating user: " + err });
+        return;
+      }
 
-  sql.connection.query("INSERT INTO student SET ?", newUser, (err, mysqlres) => {
-    if (err) {
-      console.log("error: ", err);
-      res.status(400).send({ message: "error in creating user: " + err });
+      console.log("created new user: ", { id: mysqlres.insertId });
+      res.render("LoginPage"); // Render the LoginPage.pug template
       return;
     }
-
-    console.log("created new user: ", { id: mysqlres.insertId });
-    res.render("LoginPage"); // Render the LoginPage.pug template
-    return;
-  });
+  );
 };
-
-
 
 const createNewPost = (req, res) => {
   // get datetime
@@ -109,8 +106,6 @@ const showAll = (req, res) => {
   });
 };
 
-
-
 const login = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -125,24 +120,26 @@ const login = (req, res) => {
     Password: req.body.password,
   };
 
-  sql.connection.query("SELECT * FROM student WHERE Nickname = '" + req.body.username + "' AND Password = '" + req.body.password + "'", newlogin, (err, mysqlres) => {
-    if (err) {
-      console.log("error: ", err);
-      res.status(400).send({ message: "error in login: " + err });
+  sql.connection.query(
+    "SELECT * FROM student WHERE Nickname = '" +
+      req.body.username +
+      "' AND Password = '" +
+      req.body.password +
+      "'",
+    newlogin,
+    (err, mysqlres) => {
+      if (err) {
+        console.log("error: ", err);
+        res.status(400).send({ message: "error in login: " + err });
+        return;
+      }
+
+      console.log("login success: ", { username: mysqlres[0].Nickname });
+      res.render("home"); // Render the LoginPage.pug template
       return;
     }
-
-    console.log("login success: ", { username: mysqlres[0].Nickname });
-    res.render("home"); // Render the LoginPage.pug template
-    return;
-  });
+  );
 };
-
-
-
-
-
-
 
 module.exports = {
   createNewUser,
@@ -151,13 +148,3 @@ module.exports = {
   showAll,
   login, // Add the login function to the exports
 };
-
-
-
-
-
-
-
-
-
-

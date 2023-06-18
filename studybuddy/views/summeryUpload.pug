@@ -13,7 +13,7 @@ nav
 main
   h1 Summary Upload
   .container
-    form#uploadForm(action='/newSummary' method='POST' enctype='multipart/form-data')
+    form#uploadForm(action='/upload' method='POST' enctype='multipart/form-data')
       .form-row
         label(for='input5') Summary name:
         input#input5(type='text' name='nameOfSummary' required='')
@@ -28,7 +28,7 @@ main
         input#input2(type='text' name='nameOfCourse' required='')
       .form-row
         label(for='input3') Year:
-        input#input3(type='number' name='year' required='')
+        select#input3(type='number' name='year' required='')
       .form-row
         label(for='input4') Semester:
         select#input4(name='semester' required='')
@@ -41,11 +41,11 @@ main
         .handle
         .content
           p Drag and drop your file here
-          input#file-input(type='file' name='file' required='')
-      button(type='submit') Save Changes
+          input#summaryFile(type='file' name='summaryFile' required='')
+      button#submitBtn(type='button') Save Changes
 footer
     include footer
 script(src='/JS/menu.js')
 script(src='/JS/Fotter.js')
-script(src='/JS/SummeryUploadFile.js')
+script(src='/JS/summeryUploadFile.js')
 

@@ -8,7 +8,6 @@ const app = express();
 const port = 3000;
 var now = new Date();
 var datetime = now.toISOString().slice(0, 19).replace("T", " ");
-const mysql = require('mysql');
 const { Storage } = require("@google-cloud/storage");
 const Multer = require("multer");
 const multer = Multer({
@@ -18,14 +17,12 @@ const multer = Multer({
   },
 });
 
-app.set('views',path.join(__dirname,'views'));
-app.set('view engine', 'pug');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
-
-
 
 let projectId = "studybuddy-project"; // Get this from Google Cloud
 let keyFilename = "mykey.json"; // Get this from Google Cloud -> Credentials -> Service Accounts
@@ -109,7 +106,7 @@ app.post("/upload", multer.single("summaryFile"), (req, res) => {
 
 // routing
 app.get("/", (req, res) => {
- res.render('LoginPage');
+  res.render("LoginPage");
   //res.json({ message: "Welcome to web course example application." });
 });
 //app.post("/signup", CRUD.createNewUser);
@@ -133,28 +130,27 @@ app.get("/contact-us", (req, res) => {
 app.get("/about-us", (req, res) => {
   res.render("AboutUs");
 });
-app.get('/home', (req, res) => {
-  res.render('home');
+app.get("/home", (req, res) => {
+  res.render("home");
 });
 
-app.get('/theLibrary', (req, res) => {
-  res.render('theLibrary', { currentPage: 'theLibrary' });
+app.get("/theLibrary", (req, res) => {
+  res.render("theLibrary", { currentPage: "theLibrary" });
 });
 
-app.get('/summarySearch', (req, res) => {
-  res.render('summarySearch', { currentPage: 'summarySearch' });
+app.get("/summarySearch", (req, res) => {
+  res.render("summarySearch", { currentPage: "summarySearch" });
 });
 
-app.get('/mySummaries', (req, res) => {
-  res.render('mySummaries', { currentPage: 'mySummaries' });
+app.get("/mySummaries", (req, res) => {
+  res.render("mySummaries", { currentPage: "mySummaries" });
 });
 
-app.get('/summeryUpload', (req, res) => {
-  res.render('summeryUpload', { currentPage: 'summeryUpload' });
+app.get("/summeryUpload", (req, res) => {
+  res.render("summeryUpload", { currentPage: "summeryUpload" });
 });
 
 app.post("/newpost", CRUD.createNewPost);
-
 
 app.get("/show", CRUD.showAll);
 // set port, listen for requests
@@ -162,6 +158,3 @@ app.listen(port, () => {
   console.log("Server is running on port:", port);
   console.log("Time:", datetime);
 });
-
-
-
