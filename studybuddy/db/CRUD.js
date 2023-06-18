@@ -114,7 +114,6 @@ const login = (req, res) => {
     });
     return;
   }
-
   const newlogin = {
     Nickname: req.body.username,
     Password: req.body.password,
