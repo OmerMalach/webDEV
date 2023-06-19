@@ -107,7 +107,6 @@ const showAll = (req, res) => {
 };
 
 
-
 const login = (req, res) => {
   // Validate request
   if (!req.body || !req.body.username || !req.body.password) {
