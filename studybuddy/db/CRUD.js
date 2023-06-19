@@ -106,10 +106,12 @@ const showAll = (req, res) => {
   });
 };
 
+
 const login = (req, res) => {
   // Validate request
   if (!req.body || !req.body.username || !req.body.password) {
-    res.render("loginPage", { error: "username or password cant be empty!" });
+    res.render("loginPage", { error: "Username or password can't be empty!" });
+    return;
   }
 
   const username = req.body.username;
@@ -130,6 +132,9 @@ const login = (req, res) => {
         res.render("loginPage", { error: "Invalid username or password" });
         return;
       }
+
+      const studentId = mysqlres[0].ID;
+
       console.log("Login success: ", { username: mysqlres[0].Nickname });
       res.cookie("user_name", mysqlres[0].Nickname);
       res.cookie("user_id", mysqlres[0].ID);
@@ -137,6 +142,19 @@ const login = (req, res) => {
       res.render("home", {
         v1: userName,
       }); // Render the home.pug template
+
+      res.cookie("user_name", mysqlres[0].Nickname);
+      res.cookie("user_id", studentId);
+
+      getStudentDownloads(studentId, (downloadErr, downloadResults) => {
+        if (downloadErr) {
+          console.log("Error retrieving downloads: ", downloadErr);
+          res.status(400).send({ message: "Error retrieving downloads: " + downloadErr });
+          return;
+        }
+
+        res.render("home", { downloads: downloadResults }); // Pass the downloaded summaries to the home.pug template
+      });
     }
   );
 };
@@ -280,6 +298,78 @@ const myUploads = (req, res) => {
   });
 };
 
+
+const summarySearch = (req, res) => {
+  const courseNumber = req.body.courseNumber || '';
+  const year = req.body.year || '';
+  const semester = req.body.semester || '';
+
+  // Prepare the SQL query
+  let query = 'SELECT * FROM Summary WHERE 1=1';
+
+  // Add filters based on the provided inputs
+  const filters = [];
+  if (courseNumber) {
+    query += ' AND Course_Number = ?';
+    filters.push(courseNumber);
+  }
+  if (year) {
+    query += ' AND Year = ?';
+    filters.push(year);
+  }
+  if (semester) {
+    query += ' AND Semester = ?';
+    filters.push(semester);
+  }
+
+  // Execute the SQL query
+ sql.connection.query(query, filters, (err, results) => {
+    if (err) {
+      console.error('Error in summary search:', err);
+      res.status(400).send({ message: 'Error in summary search: ' + err });
+      return;
+    }
+    res.render('SearchResults', { summaries: results });
+  });
+};
+
+function getStudentDownloads(user_id, callback) {
+  // Use the `userId` to retrieve the downloaded summaries specific to the user from your database
+  // Perform the necessary database query to retrieve the summaries
+
+  // Example query using MySQL2 library
+  const query = 'SELECT * FROM Summary WHERE uploader_id = ?';
+
+  // Assuming you have a MySQL connection pool defined and stored in a variable called `pool`
+   sql.connection.query(query, [user_id], (err, results) => {
+    if (err) {
+      callback(err); // Pass the error to the callback
+      return;
+    }
+
+    const summaries = results.map(row => {
+  return {
+    Name_Summary: row.name,
+    Course_Number: row.courseNumber,
+    Course_Name: row.courseName,
+    teacher: row.teacher,
+    Year: row.year,
+    Semester: row.semester,
+    uploadDate: row.uploadDate,
+    summaryUrl: row.summaryUrl
+  };
+});
+    console.log("Downloaded summaries: ", results);
+
+    callback(null, summaries); // Pass the summaries array to the callback
+  });
+}
+
+
+
+
+
+
 module.exports = {
   createNewUser,
   createNewPost,
@@ -289,4 +379,6 @@ module.exports = {
   getMyPosts,
   uploadSummaryToCload,
   myUploads, // Add the login function to the exports
+  summarySearch,
+  getStudentDownloads,
 };

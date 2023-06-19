@@ -60,9 +60,7 @@ app.get("/summarySearch", (req, res) => {
   res.render("summarySearch", { currentPage: "summarySearch" });
 });
 
-app.get("/mySummaries", (req, res) => {
-  res.render("mySummaries", { currentPage: "mySummaries" });
-});
+
 
 app.get("/summeryUpload", (req, res) => {
   res.render("summeryUpload", { currentPage: "summeryUpload" });
@@ -72,6 +70,45 @@ app.post("/newpost", CRUD.createNewPost);
 
 app.get("/show", CRUD.showAll);
 // set port, listen for requests
+
+
+
+app.post("/summarySearch", CRUD.summarySearch);
+
+app.post("/mySummaries", CRUD.getStudentDownloads);
+
+const { getStudentDownloads } = require('./db/CRUD');
+
+
+app.get("/mySummaries", (req, res) => {
+  const userId = req.cookies.user_id;
+
+  getStudentDownloads(userId, (err, downloadResults) => {
+    if (err) {
+      console.log("Error retrieving downloads: ", err);
+      res.status(400).send({ message: "Error retrieving downloads: " + err });
+      return;
+    }
+
+    res.render("mySummaries", { downloads: downloadResults, currentPage: "mySummaries" });
+  });
+});
+
+app.get('/SearchResults', (req, res) => {
+  // Retrieve the summary results from the database
+  const query = 'SELECT * FROM Summary WHERE 1=1';
+  pool.query(query, (err, results) => {
+    if (err) {
+      console.error('Error retrieving summary results:', err);
+      res.status(400).send({ message: 'Error retrieving summary results: ' + err });
+      return;
+    }
+    res.render('searchResults', { summaries: results });
+  });
+});
+
+
+
 app.listen(port, () => {
   console.log("Server is running on port:", port);
   console.log("Time:", datetime);
