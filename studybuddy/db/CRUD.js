@@ -137,13 +137,6 @@ const login = (req, res) => {
 
       console.log("Login success: ", { username: mysqlres[0].Nickname });
       res.cookie("user_name", mysqlres[0].Nickname);
-      res.cookie("user_id", mysqlres[0].ID);
-      let userName = req.cookies.user_name;
-      res.render("home", {
-        v1: userName,
-      }); // Render the home.pug template
-
-      res.cookie("user_name", mysqlres[0].Nickname);
       res.cookie("user_id", studentId);
 
       getStudentDownloads(studentId, (downloadErr, downloadResults) => {
@@ -153,11 +146,12 @@ const login = (req, res) => {
           return;
         }
 
-        res.render("home", { downloads: downloadResults }); // Pass the downloaded summaries to the home.pug template
+        res.render("home", { v1: mysqlres[0].Nickname, downloads: downloadResults }); // Pass the downloaded summaries to the home.pug template
       });
     }
   );
 };
+
 
 const getMyPosts = (req, res) => {
   const q = `
@@ -334,31 +328,34 @@ const summarySearch = (req, res) => {
 };
 
 function getStudentDownloads(user_id, callback) {
+  const query = `
+    SELECT s.Name_Summary, s.Course_Number, s.Course_Name, s.teacher, s.Year, s.Semester, s.uploadDate, s.summaryUrl
+    FROM Summary s
+    JOIN Download d ON s.Summary_ID = d.Summary_ID
+    WHERE d.Student_ID = ?
+  `;
 
-  const query = 'SELECT * FROM Summary WHERE uploader_id = ?';
-
-  // Assuming you have a MySQL connection pool defined and stored in a variable called `pool`
-   sql.connection.query(query, [user_id], (err, results) => {
+  sql.connection.query(query, [user_id], (err, results) => {
     if (err) {
-      callback(err); // Pass the error to the callback
+      callback(err);
       return;
     }
 
-    const summaries = results.map(row => {
-  return {
-    Name_Summary: row.name,
-    Course_Number: row.courseNumber,
-    Course_Name: row.courseName,
-    teacher: row.teacher,
-    Year: row.year,
-    Semester: row.semester,
-    uploadDate: row.uploadDate,
-    summaryUrl: row.summaryUrl
-  };
-});
-    console.log("Downloaded summaries: ", results);
+    const downloads = results.map(row => {
+      return {
+        name: row.Name_Summary,
+        courseNumber: row.Course_Number,
+        courseName: row.Course_Name,
+        teacher: row.teacher,
+        year: row.Year,
+        semester: row.Semester,
+        uploadDate: row.uploadDate,
+        summaryUrl: row.summaryUrl
+      };
+    });
 
-    callback(null, summaries); // Pass the summaries array to the callback
+    console.log("Downloaded summaries: ", downloads);
+    callback(null, downloads);
   });
 }
 
