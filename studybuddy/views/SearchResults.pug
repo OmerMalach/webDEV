@@ -32,7 +32,7 @@ html
                 p= 'Semester: ' + summary.Semester
                 p= 'Number of Downloads: ' + summary.numDownloads
                 p= 'Upload Date: ' + summary.uploadDate
-                a(src='summary.summaryUrl')= 'Download'
+                a(href=summary.summaryUrl)= 'Download'
           else
             p No results found.
     footer

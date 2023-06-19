@@ -334,10 +334,7 @@ const summarySearch = (req, res) => {
 };
 
 function getStudentDownloads(user_id, callback) {
-  // Use the `userId` to retrieve the downloaded summaries specific to the user from your database
-  // Perform the necessary database query to retrieve the summaries
 
-  // Example query using MySQL2 library
   const query = 'SELECT * FROM Summary WHERE uploader_id = ?';
 
   // Assuming you have a MySQL connection pool defined and stored in a variable called `pool`
@@ -364,10 +361,6 @@ function getStudentDownloads(user_id, callback) {
     callback(null, summaries); // Pass the summaries array to the callback
   });
 }
-
-
-
-
 
 
 module.exports = {
