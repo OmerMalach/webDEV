@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title StudyBudy: SummarySearchResults
+    link(rel='stylesheet' href='/CSS/app.css')
+    link(rel='stylesheet' href='/CSS/searchResults.css')
+    link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
+    script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
+  body
+    nav
+      include navBar
+    main
+      .container
+        h1 Search Results
+        .search-container
+          form#filter-form(action='/SearchResults' method='POST')
+            label(for='keyword') Filter by summary name, uploader name or course number:
+            input#keyword(type='text' name='keyword')
+            button#filter-button(type='submit')
+              | Filter
+              i
+        .summary-board
+          if summaries.length > 0
+            each summary in summaries
+              .summary-card
+                h3= summary.Course_Name
+                p= 'Course Number: ' + summary.Course_Number
+                p= 'Teacher: ' + summary.teacher
+                p= 'Year: ' + summary.Year
+                p= 'Semester: ' + summary.Semester
+                p= 'Number of Downloads: ' + summary.numDownloads
+                p= 'Upload Date: ' + summary.uploadDate
+                a(src='summary.summaryUrl')= 'Download'
+          else
+            p No results found.
+    footer
+      include footer
+script(src='/JS/menu.js')
