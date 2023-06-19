@@ -1,41 +1,50 @@
 const summariesContainer = document.querySelector(".summaries-container");
-fetch("../static/mockData/searchResultsData.json") // Fetch the JSON data and generate the elements for all summaries
-  .then((response) => response.json())
+fetch("/myUploads")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
   .then((data) => {
-    data.summaries.forEach(generateSummeryCard);
-  });
+    files = data;
 
-function generateSummeryCard(card) {
-  const summeryCard = document.createElement("div");
+    if (files[0] != null) {
+      files.forEach(generatesummaryCard);
+    }
+  })
+  .catch((error) => console.error("There was an error!", error));
+
+function generatesummaryCard(card) {
+  const summaryCard = document.createElement("div");
   const summaryName = document.createElement("h3");
   const CourseNumber = document.createElement("p");
-
-  const Rank = document.createElement("p");
+  const CourseName = document.createElement("p");
+  const teacher = document.createElement("p");
   const Downloads = document.createElement("p");
   const UploadingDate = document.createElement("p");
-
   const DownloadButton = document.createElement("a");
+
   // Set the content and attributes of the elements
-  summaryName.textContent = card.name;
-  CourseNumber.textContent = `Course Number: ${card.courseNumber}`;
-
-  Rank.textContent = `Rank: ${card.rank}`;
+  summaryName.textContent = card.Name_Summary;
+  CourseNumber.textContent = `Course Number: ${card.Course_Number}`;
+  CourseName.textContent = `Course Name: ${card.Course_Name}`;
+  teacher.textContent = `Teacher: ${card.teacher}`;
   Downloads.textContent = `Downloads: ${card.numDownloads}`;
-  UploadingDate.textContent = `Upload Date: ${card.uploadDate}`;
-
+  UploadingDate.textContent =
+    `Upload Date: ${card.uploadDate}`.toLocaleString();
   DownloadButton.textContent = "Download";
   DownloadButton.href = card.summaryUrl;
 
   // Append the elements to the summery card
-  summeryCard.appendChild(summaryName);
-  summeryCard.appendChild(CourseNumber);
-
-  summeryCard.appendChild(Rank);
-  summeryCard.appendChild(Downloads);
-  summeryCard.appendChild(UploadingDate);
-
-  summeryCard.appendChild(DownloadButton);
+  summaryCard.appendChild(summaryName);
+  summaryCard.appendChild(CourseNumber);
+  summaryCard.appendChild(CourseName);
+  summaryCard.appendChild(teacher);
+  summaryCard.appendChild(Downloads);
+  summaryCard.appendChild(UploadingDate);
+  summaryCard.appendChild(DownloadButton);
 
   // Append the job element to the featured jobs container
-  summariesContainer.appendChild(summeryCard);
+  summariesContainer.appendChild(summaryCard);
 }

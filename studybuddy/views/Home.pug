@@ -1,4 +1,4 @@
-- var currentPage = 'Home'
+- var currentPage = 'home'
 doctype html
 head
   meta(charset='UTF-8')
@@ -10,36 +10,29 @@ head
   script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
 nav
   include navBar
-.search-container
-  input#search-input(type='text' name='search' placeholder='Search for friends...')
-  button#search-button(type='submit')
-    i#search-icon.fa.fa-search
-form(action='/newpost' method='POST')
+form(action='/newpost' method='POST' onsubmit='return validatePost()')
   .post-container
     input#post-textarea(type='text' name='post' placeholder='Post summary requests as needed and ask your community for help...')
     button#post-button(type='submit')
       i  Post
 header
   .profile-info
-    img(src='../static/photos/myprofile.png' alt='Profile Picture')
-    h1.username Omer Malach
+    img(src='/photos/nullProfilePic.png' alt='Profile Picture')
+    h1.username #{v1}
     .credit-indicator
       p Credits:
       span 42
       button#credit-button.gain-credit(type='submit')
         | Gain Credit
 main
-  h2 My Posts
-  section#wall.posts
-    // Insert code for posts here
+  section#wall.posts 
 section.summaries-container
   h2 My Summaries
   h3 Here you can easily view and redownload past summary uploads...
-  // Insert code for summaries here
+// Insert code for summaries here
 footer
    include footer
 script(src='/JS/menu.js')
-script(src='/JS/buddySearch.js')
 script(src='/JS/gainCredit.js')
 script(src='/JS/homeMySummaries.js')
 script(src='/JS/homeMyposts.js')

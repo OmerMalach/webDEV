@@ -5,7 +5,7 @@ body {
     "content content list "
     "footer footer footer";
   grid-template-columns: 4fr 2fr 4fr;
-  grid-template-rows: 0.2fr 1fr 7fr 0.5fr;
+  grid-template-rows: 0.2fr 1fr 6fr 0.5fr;
 }
 header {
   display: flex;
@@ -107,7 +107,7 @@ h3 {
 }
 .post-container {
   display: flex;
-  grid-area: search;
+
   align-items: center;
   justify-content: center;
   margin-top: 80px;
@@ -116,10 +116,13 @@ h3 {
   padding: 72px;
   margin-right: 10px;
   border: none;
-  border-radius: 40px;
+  border-radius: 60px;
   width: 500px;
 }
-
+#post-textarea {
+  font-size: 18px; /* Adjust the font size as needed */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
 .post-container button {
   background-color: #5195c9f0;
   color: white;
@@ -128,15 +131,16 @@ h3 {
   border-radius: 4px;
   cursor: pointer;
   margin-right: 10px;
+  font-size: 18px;
 }
 .post-container button:hover {
   background-color: #3e8e41;
 }
 .posts > div {
-  margin: 5px;
-  border: 4px solid #ccc;
+  margin: 15px;
+  border: 4px solid #b1c3d0;
   border-radius: 5px;
-  width: 1fr;
+  width: 100%;
 }
 .posts > div:hover {
   margin: 2px;
@@ -190,35 +194,50 @@ h3 {
   body {
     grid-template-areas:
       "nav nav nav"
-      "header search search "
-      "content content list "
+      "header search . "
+      "list content content "
       "footer footer footer";
-    grid-template-columns: 3fr 6fr 4fr;
+    grid-template-columns: 10fr 1fr 1fr;
     grid-template-rows: 0.2fr 0.5fr 7fr 0.5fr;
   }
   .search-container {
     margin-bottom: 0x;
   }
+  .posts {
+    justify-self: center;
+    width: 90%;
+  }
+  .post-container input[type="text"] {
+    width: 400px;
+  }
 }
+
 @media only screen and (max-width: 1230px) {
   h1.username {
     font-size: 28px;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 980px) {
+  .post-container input[type="text"] {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 800px) {
   body {
     grid-template-areas:
       "nav nav nav"
       "header header header "
       "search search search"
-      "content content list "
+      "content content content"
+      "list list list  "
       "footer footer footer";
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.2fr 0.5fr 0.5fr 7fr 0.5fr;
+    grid-template-rows: 0.01fr 0.05fr 0.05fr 3fr 0.5fr;
   }
   header {
-    justify-content: center;
+    justify-self: center;
   }
+
   .summaries-container {
     padding: 5px;
   }
