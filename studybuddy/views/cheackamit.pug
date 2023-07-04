@@ -1,0 +1,112 @@
+// Rest of your code remains the same...
+
+// Function to create post HTML
+function createPostHTML(post) {
+  const authorPhoto = post.authorPhoto || "/photos/nullProfilePic.png";
+
+  const postHTML = `
+    <div class="post-container">
+      <div class="post-header">
+        <img class="author-photo" src="${authorPhoto}" alt="Author Photo">
+        <h2 class="author">${post.Nickname}</h2>
+        <p class="timestamp">${formatTimestamp(post.DateTime)}</p>
+        <p class="email">${post.Email}</p>
+      </div>
+      <p class="post-content">${post.Text}</p>
+      <div class="comment-section">
+        <input type="text" placeholder="Leave a comment" class="comment-input">
+        <button class="comment-button" data-author="${post.Nickname}">Comment</button>
+        <ul class="comment-list"></ul>
+      </div>
+    </div>
+  `;
+  return postHTML;
+}
+
+// Function to fetch posts from the server
+async function fetchPosts() {
+  try {
+    const response = await fetch('/posts'); // Assuming you have a route '/posts' on the server to retrieve posts
+    if (response.ok) {
+      const posts = await response.json();
+      return posts;
+    } else {
+      console.error('Error fetching posts:', response.status);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
+}
+
+// Function to render the comments for a post
+function renderComments(postElement, comments) {
+  const commentList = postElement.querySelector('.comment-list');
+  const commentsHTML = comments.map(createCommentHTML).join('');
+  commentList.innerHTML = commentsHTML;
+}
+
+// Function to handle comment submission
+function handleCommentSubmission(event) {
+  event.preventDefault();
+
+  const postElement = event.target.closest('.post-container');
+  const commentInput = postElement.querySelector('.comment-input');
+  const commentList = postElement.querySelector('.comment-list');
+
+  const commentText = commentInput.value;
+  if (commentText) {
+    // Send the comment data to the server
+    const postData = {
+      postElement,
+      commentText
+    };
+
+    fetch('/comment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    })
+    .then(response => {
+      if (response.ok) {
+        // Update the comment list on the page
+        const commentData = {
+          text: commentText,
+          author: 'You' // Assuming the logged-in user's name is displayed as 'You'
+        };
+        const commentHTML = createCommentHTML(commentData);
+        commentList.innerHTML += commentHTML;
+        commentInput.value = '';
+      } else {
+        console.error('Error adding comment:', response.status);
+      }
+    })
+    .catch(error => {
+      console.error('Error adding comment:', error);
+    });
+  }
+}
+
+// Fetch and render the posts on page load
+window.addEventListener('DOMContentLoaded', async () => {
+  const postsContainer = document.querySelector('#posts-container');
+  const posts = await fetchPosts();
+  if (posts.length > 0) {
+    const postsHTML = posts.map(createPostHTML).join('');
+    postsContainer.innerHTML = postsHTML;
+  } else {
+    postsContainer.innerHTML = '<p>No recent posts found.</p>';
+  }
+
+  // Add event listeners to comment buttons
+  const commentButtons = document.querySelectorAll('.comment-button');
+  commentButtons.forEach(button => {
+    button.addEventListener('click', handleCommentSubmission);
+  });
+});
+
+
+

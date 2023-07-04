@@ -106,7 +106,6 @@ const showAll = (req, res) => {
   });
 };
 
-
 const login = (req, res) => {
   // Validate request
   if (!req.body || !req.body.username || !req.body.password) {
@@ -146,7 +145,7 @@ const login = (req, res) => {
           return;
         }
 
-        res.render("home", { v1: mysqlres[0].Nickname, downloads: downloadResults }); // Pass the downloaded summaries to the home.pug template
+        res.render("home", { v1: mysqlres[0].Nickname, downloads: downloadResults, loggedInUser: mysqlres[0].Nickname });
       });
     }
   );
@@ -360,6 +359,61 @@ function getStudentDownloads(user_id, callback) {
 }
 
 
+
+
+
+
+
+
+
+
+const recentPosts = (req, res) => {
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+  const q = `
+    SELECT *
+    FROM Post
+    INNER JOIN Student ON Post.Poster_ID = Student.ID
+    WHERE DateTime >= ?
+  `;
+
+  sql.connection.query(q, [thirtyDaysAgo], (error, results) => {
+    if (error) {
+      res.status(500).json({ message: error.message });
+    } else {
+      res.json(results);
+    }
+  });
+};
+
+const createNewComment = (req, res) => {
+  if (!req.body || !req.body.DateTime || !req.body.Text || !req.body.Post_ID || !req.body.Student_ID) {
+    res.status(400).json({ message: "Invalid comment data" });
+    return;
+  }
+    const newComment = {
+    DateTime: req.body.DateTime,
+    Text: req.body.Text,
+    Post_ID: req.body.Post_ID,
+    Student_ID: req.body.Student_ID,
+  };
+
+  sql.connection.query("INSERT INTO Comment SET ?", newComment, (err, result) => {
+    if (err) {
+      console.error("Error creating comment:", err);
+      res.status(500).json({ message: "Failed to create comment" });
+      return;
+    }
+
+    res.json({ message: "Comment created successfully", commentId: result.insertId });
+  });
+};
+
+
+
+
+
 module.exports = {
   createNewUser,
   createNewPost,
@@ -371,4 +425,6 @@ module.exports = {
   myUploads, // Add the login function to the exports
   summarySearch,
   getStudentDownloads,
+  recentPosts,
+  createNewComment,
 };

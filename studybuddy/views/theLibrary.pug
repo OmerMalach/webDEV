@@ -1,19 +1,31 @@
-- var currentPage = 'theLibrary'
 doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title StudyBuddy: The Library
-  link(rel='stylesheet' href='/CSS/app.css')
-  link(rel='stylesheet' href='/CSS/theLibrary.css')
-  script(src='https://code.jquery.com/jquery-3.6.0.min.js')
-  link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
-  script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
-nav
-  include navBar
-main
-  #posts-container
-footer
-     include footer
-script(src='/JS/theLibrary.js')
-script(src='/JS/Fotter.js')
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title StudyBuddy: The Library
+    link(rel='stylesheet' href='/CSS/app.css')
+    link(rel='stylesheet' href='/CSS/theLibrary.css')
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+    link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
+    script(src='https://kit.fontawesome.com/7d07e6b941.js' crossorigin='anonymous')
+  body
+    nav
+      include navBar
+    main
+      #posts-container
+        form(action='/newcomment' method='POST' onsubmit='return validateComment()')
+          if posts && posts.length > 0
+            each post in posts
+              .post-card
+                h3= post.title
+                .comment-section
+                  input(type='hidden' name='postId' value=post.id)
+                  input(type='text' placeholder='Leave a comment' class='comment-input')
+                  button.comment-button(data-author="#{loggedInUser}" data-post-id="#{post.Post_ID}") Comment
+                  ul.comment-list
+          else
+            p No posts found.
+    footer
+      include footer
+  script(src='/JS/theLibrary.js')

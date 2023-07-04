@@ -6,6 +6,7 @@ const sql = require("./db/db");
 const cookieParser = require("cookie-parser"); // to install.
 const app = express();
 const port = 3000;
+
 const Multer = require("multer");
 const multer = Multer({
   storage: Multer.memoryStorage(),
@@ -52,12 +53,14 @@ app.get("/home", (req, res) => {
   res.render("home", { currentPage: "home" });
 });
 
-app.get("/theLibrary", (req, res) => {
-  res.render("theLibrary", { currentPage: "theLibrary" });
-});
+
+
 
 app.get("/summarySearch", (req, res) => {
   res.render("summarySearch", { currentPage: "summarySearch" });
+});
+app.get("/theLibrary", (req, res) => {
+  res.render("theLibrary", { currentPage: "theLibrary" });
 });
 
 
@@ -106,6 +109,19 @@ app.get('/SearchResults', (req, res) => {
     res.render('searchResults', { summaries: results });
   });
 });
+
+app.get('/recentPosts',CRUD.recentPosts);
+app.post("/newcomment", CRUD.createNewComment);
+
+
+
+
+
+
+
+
+
+
 
 
 
