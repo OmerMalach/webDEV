@@ -105,7 +105,7 @@ button:hover {
 .create-account-btn,
 .forgot-password-btn {
   display: inline-block;
-  margin: 0 10px;
+  margin: 42px 10px;
   padding: 10px 20px;
   background-color: #00a600;
   color: #fff;
@@ -185,7 +185,7 @@ button:hover {
     height: auto;
     transform: none;
   }
-   button {
+  button {
     width: 100%;
   }
   .title {

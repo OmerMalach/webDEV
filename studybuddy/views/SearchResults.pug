@@ -14,13 +14,9 @@ html
     main
       .container
         h1 Search Results
-        .search-container
-          form#filter-form(action='/SearchResults' method='POST')
-            label(for='keyword') Filter by summary name, uploader name or course number:
-            input#keyword(type='text' name='keyword')
-            button#filter-button(type='submit')
-              | Filter
-              i
+        .credit-counter-container
+           i.fas.fa-coins
+            span#credit-counter Your Credits:#{v1}
         .summary-board
           if summaries.length > 0
             each summary in summaries
@@ -32,9 +28,10 @@ html
                 p= 'Semester: ' + summary.Semester
                 p= 'Number of Downloads: ' + summary.numDownloads
                 p= 'Upload Date: ' + summary.uploadDate
-                a(href=summary.summaryUrl)= 'Download'
+                a.downBt(href=summary.summaryUrl download data-id=summary.Summary_ID)= 'Download'
           else
             p No results found.
     footer
       include footer
 script(src='/JS/menu.js')
+script(src='/JS/downloadLogger.js')

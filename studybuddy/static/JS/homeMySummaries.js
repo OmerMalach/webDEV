@@ -8,7 +8,6 @@ fetch("/myUploads")
   })
   .then((data) => {
     files = data;
-
     if (files[0] != null) {
       files.forEach(generatesummaryCard);
     }

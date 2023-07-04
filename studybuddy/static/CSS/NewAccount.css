@@ -62,14 +62,14 @@ form {
 }
 input[type="text"],
 input[type="password"] {
-    padding: 10px 45px 10px 10px;
-    margin: 10px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size:18px;
-    width:300px;
-    position: relative; /* add this line */
+  padding: 10px 45px 10px 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  width: 300px;
+  position: relative; /* add this line */
 }
 button {
   padding: 10px;
@@ -95,9 +95,6 @@ button:hover {
   font-weight: bold;
   color: #1a5c67;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-button:hover {
-  background-color: #006666;
 }
 .form-bottom-links {
   margin-top: 20px;
@@ -216,16 +213,13 @@ button:hover {
     margin: 30px auto;
     padding: 30px;
   }
-   .sidebar {
+  .sidebar {
     position: absolute;
     top: 20px;
-  right: 20px;
+    right: 20px;
   }
   h1 {
     font-size: 40px;
     margin-top: 30px;
   }
 }
-
-
-

@@ -34,5 +34,3 @@ async function validateUser(username, password) {
 
   return foundUser !== undefined;
 }
-
-
