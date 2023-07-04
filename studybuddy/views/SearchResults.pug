@@ -3,7 +3,7 @@ html
   head
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title StudyBudy: SummarySearchResults
+    title StudyBudy: My Summaries
     link(rel='stylesheet' href='/CSS/app.css')
     link(rel='stylesheet' href='/CSS/searchResults.css')
     link(rel='icon' href='../static/photos/icon.png' type='image/x-icon')
@@ -13,14 +13,20 @@ html
       include navBar
     main
       .container
+<<<<<<< HEAD
         h1 Search Results
         .credit-counter-container
            i.fas.fa-coins
             span#credit-counter Your Credits:#{v1}
+=======
+        h1 My Summaries
+        h2 Here you can find your downloaded summaries history...
+>>>>>>> f9f958ede5408763803d433c544125cf7c96180e
         .summary-board
-          if summaries.length > 0
-            each summary in summaries
+          if downloads.length > 0
+            each download in downloads
               .summary-card
+<<<<<<< HEAD
                 h3= summary.Course_Name
                 p= 'Course Number: ' + summary.Course_Number
                 p= 'Teacher: ' + summary.teacher
@@ -29,9 +35,22 @@ html
                 p= 'Number of Downloads: ' + summary.numDownloads
                 p= 'Upload Date: ' + summary.uploadDate
                 a.downBt(href=summary.summaryUrl download data-id=summary.Summary_ID)= 'Download'
+=======
+                h3= download.Course_Name
+                p= 'Course Number: ' + download.Course_Number
+                p= 'Teacher: ' + download.teacher
+                p= 'Year: ' + download.Year
+                p= 'Semester: ' + download.Semester
+                p= 'Upload Date: ' + download.uploadDate
+                a(href=download.summaryUrl)= 'Download'
+>>>>>>> f9f958ede5408763803d433c544125cf7c96180e
           else
-            p No results found.
+            p No summaries available.
     footer
       include footer
+<<<<<<< HEAD
 script(src='/JS/menu.js')
 script(src='/JS/downloadLogger.js')
+=======
+  script(src='/JS/menu.js')
+>>>>>>> f9f958ede5408763803d433c544125cf7c96180e
