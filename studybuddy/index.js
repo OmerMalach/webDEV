@@ -33,6 +33,14 @@ seed()
     console.log("Error seeding database:", err);
   });
 
+// Drop tables if they exist
+app.get("/dropAllTables", async (req, res) => {
+  await sql.promisePool.query(
+    `DROP TABLE IF EXISTS Download, Comment, Post, Summary, Student`
+  );
+  res.send("tables have been dropped :)");
+});
+
 // routing
 app.get("/", (req, res) => {
   res.render("LoginPage");
