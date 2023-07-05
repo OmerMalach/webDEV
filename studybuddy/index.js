@@ -75,9 +75,6 @@ app.get("/home", (req, res) => {
   });
 });
 
-
-
-
 app.get("/summarySearch", (req, res) => {
   res.render("summarySearch", { currentPage: "summarySearch" });
 });
@@ -92,12 +89,8 @@ app.get("/summeryUpload", (req, res) => {
 app.post("/newpost", CRUD.createNewPost);
 app.get("/mypost", CRUD.getMyPosts);
 
-app.post('/newComment', CRUD.addComment);
+app.post("/newComment", CRUD.addComment);
 app.get("/getLibraryPosts", CRUD.getLibraryPosts);
-
-
-
-
 
 app.post("/summarySearch", CRUD.summarySearch);
 
@@ -137,17 +130,9 @@ app.get("/SearchResults", (req, res) => {
   });
 });
 
-
-
-
-
-
 app.post("/downloadTracker", CRUD.downloadTracker);
 app.get("/myUploads", CRUD.myUploads);
 app.post("/upload", multer.single("summaryFile"), CRUD.uploadSummaryToCload);
-
-
-
 
 // Drop tables if they exist
 app.get("/dropAllTables", async (req, res) => {
@@ -156,9 +141,6 @@ app.get("/dropAllTables", async (req, res) => {
   );
   res.send("tables have been dropped :)");
 });
-
-
-
 
 app.listen(port, () => {
   console.log("Server is running on port:", port);

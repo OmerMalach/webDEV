@@ -150,7 +150,6 @@ const showAll = (req, res) => {
   });
 };
 
-
 const login = (req, res) => {
   // Validate request
   if (!req.body || !req.body.username || !req.body.password) {
@@ -192,8 +191,11 @@ const login = (req, res) => {
           return;
         }
 
-        res.render("home", { v1: mysqlres[0].Nickname, downloads: downloadResults, loggedInUser: mysqlres[0].Nickname });
-
+        res.render("home", {
+          v1: mysqlres[0].Nickname,
+          downloads: downloadResults,
+          loggedInUser: mysqlres[0].Nickname,
+        });
       });
     }
   );
@@ -215,7 +217,7 @@ const getMyPosts = (req, res) => {
       SELECT *
       FROM comment
       JOIN Student ON comment.Student_ID = Student.ID
-      WHERE a = ?
+      WHERE Post_ID = ?
     `;
     Promise.all(
       posts.map((post) => {
@@ -239,7 +241,7 @@ const getMyPosts = (req, res) => {
         res.json(postsWithComments);
       })
       .catch((error) => {
-        res.status(500).json({ message: error.message });
+        res.status(501).json({ message: error.message });
       });
   });
 };
@@ -368,7 +370,7 @@ const summarySearch = (req, res) => {
     query += " AND Course_Number = ?";
     filters.push(courseNumber);
   }
-   if (nameOfCourse) {
+  if (nameOfCourse) {
     query += " AND Course_Name  = ?";
     filters.push(nameOfCourse);
   }
@@ -500,7 +502,6 @@ function getStudentDownloads(user_id, callback) {
   });
 }
 
-
 const getLibraryPosts = (req, res) => {
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -599,8 +600,6 @@ const addComment = (req, res) => {
     });
   });
 };
-
-
 
 module.exports = {
   createNewUser,
