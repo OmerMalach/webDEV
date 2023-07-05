@@ -141,7 +141,13 @@ app.post("/upload", multer.single("summaryFile"), CRUD.uploadSummaryToCload);
 
 
 
-
+// Drop tables if they exist
+app.get("/dropAllTables", async (req, res) => {
+  await sql.promisePool.query(
+    `DROP TABLE IF EXISTS Download, Comment, Post, Summary, Student`
+  );
+  res.send("tables have been dropped :)");
+});
 
 
 

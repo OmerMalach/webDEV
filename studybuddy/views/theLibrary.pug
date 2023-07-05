@@ -14,7 +14,7 @@ html
       include navBar
     main
       #posts-container
-        form(action='/newComment' method='POST' onsubmit='return validateComment()' id='comment-form')
+        form(action='/' method='POST' od id='comment-form')
           if posts && posts.length > 0
             each post in posts
               .post-container

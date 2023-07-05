@@ -600,6 +600,8 @@ const addComment = (req, res) => {
   });
 };
 
+
+
 module.exports = {
   createNewUser,
   createNewPost,
@@ -612,5 +614,5 @@ module.exports = {
   downloadTracker,
   getStudentDownloads,
   getLibraryPosts,
-  createNewComment,
+  addComment,
 };
