@@ -28,7 +28,7 @@ html
                   input(type='hidden' name='Post_ID' value=post.Post_ID)
                   input(type='text' placeholder='Leave a comment' class='comment-input' id='comment-input')
                   label(for=`comment-input-${post.Post_ID}`) Enter your comment
-                  button.comment-button(type='submit' name='comment-button' data-author=post.Nickname data-post-id=post.Post_ID) Comment
+                  button.comment-button(type='submit') Comment
                   ul.comment-list(id=`comment-list-${post.Post_ID}`)
                     each comment in post.comments
                       li= `${comment.Nickname}: ${comment.Text}`

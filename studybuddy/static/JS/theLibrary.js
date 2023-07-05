@@ -1,20 +1,5 @@
 const libraryContainer = document.querySelector("#posts-container");
 
-function validateComment() {
-  const commentContent = document.getElementById("comment-input").value;
-
-  if (!commentContent || commentContent.trim() === "") {
-    alert("Comment cannot be empty");
-    return false; // This will prevent the form from being submitted
-  }
-  return true; // This will allow the form to be submitted
-}
-
-function formatTimestamp(timestamp) {
-  const date = new Date(timestamp);
-  return date.toLocaleString(); // Adjust the formatting as per your requirements
-}
-
 fetch("/getLibraryPosts")
   .then((response) => {
     if (!response.ok) {
@@ -31,26 +16,39 @@ fetch("/getLibraryPosts")
     console.error("Error fetching library posts:", error);
   });
 
+function validateComment() {
+  const commentContent = document.getElementById("comment-input").value;
 
-document.querySelectorAll('.comment-form').forEach((form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault(); // Prevent form submission
+  if (!commentContent || commentContent.trim() === "") {
+    alert("Comment cannot be empty");
+    return false; // This will prevent the form from being submitted
+  }
+  return true; // This will allow the form to be submitted
+}
+function formatTimestamp(timestamp) {
+  const date = new Date(timestamp);
+  return date.toLocaleString(); // Adjust the formatting as per your requirements
+}
+function addCommentButtonListener(button) {
+  button.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent button's default action
 
-    const commentInput = form.querySelector('.comment-input');
+    // Find the parent form element
+    const form = button.closest("form");
+    const postID = form.dataset.postId; // Get the post ID from the form
+    let commentInput = form.querySelector(".comment-input");
     const commentContent = commentInput.value;
-
-    if (!commentContent || commentContent.trim() === '') {
-      alert('Comment cannot be empty');
+    commentInput.value = "";
+    if (!commentContent || commentContent.trim() === "") {
+      alert("Comment cannot be empty");
       return;
     }
 
-    const postID = form.getAttribute('data-post-id'); // Get the post ID from the form
-
     // Send the comment data to the server
-    fetch('/newComment', {
-      method: 'POST',
+    fetch("/newComment", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         postID: postID,
@@ -61,26 +59,14 @@ document.querySelectorAll('.comment-form').forEach((form) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json();
-      })
-      .then((data) => {
-        // Generate the new comment element and append it to the comment list
-        const commentList = document.querySelector(`#comment-list-${postID}`);
-        const commentItem = generateCommentElement(data.comment); // Assuming the server returns the new comment object
-        commentList.appendChild(commentItem);
-
-        // Reset the comment input field
-        commentInput.value = '';
+        // Don't try to parse the response as JSON
+        window.location.href = response.url; // Redirects the browser to the new page
       })
       .catch((error) => {
-        console.error('Error submitting comment:', error);
+        console.error("Error submitting comment:", error);
       });
   });
-});
-
-
-
-
+}
 
 function generateLibraryPostElement(post) {
   const postContainer = document.createElement("div");
@@ -91,7 +77,7 @@ function generateLibraryPostElement(post) {
 
   const authorPhoto = document.createElement("img");
   authorPhoto.classList.add("author-photo");
-  authorPhoto.src = post.authorPhoto;
+  authorPhoto.src = "/photos/nullProfilePic.png";
   authorPhoto.alt = "Author Photo";
   postHeader.appendChild(authorPhoto);
 
@@ -118,6 +104,7 @@ function generateLibraryPostElement(post) {
 
   const commentForm = document.createElement("form");
   commentForm.classList.add("comment-form");
+  commentForm.dataset.postId = post.Post_ID;
   commentSection.appendChild(commentForm);
 
   const commentInput = document.createElement("input");
@@ -127,8 +114,11 @@ function generateLibraryPostElement(post) {
 
   const commentButton = document.createElement("button");
   commentButton.classList.add("comment-button");
+  commentButton.type = "button";
   commentButton.textContent = "Post Comment";
+  addCommentButtonListener(commentButton);
   commentForm.appendChild(commentButton);
+  //addCommentFormListener(commentForm);
 
   commentSection.appendChild(commentForm);
 
@@ -143,9 +133,11 @@ function generateLibraryPostElement(post) {
 
   // Display comments for the current post
   post.comments.forEach(generateCommentElement);
-
-}function generateCommentElement(comment) {
-  const commentList = document.querySelector(`#comment-list-${comment.Post_ID}`);
+}
+function generateCommentElement(comment) {
+  const commentList = document.querySelector(
+    `#comment-list-${comment.Post_ID}`
+  );
 
   const commentItem = document.createElement("li");
   commentItem.textContent = `${comment.Nickname}: ${comment.Text}`;

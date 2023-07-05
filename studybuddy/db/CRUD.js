@@ -521,7 +521,6 @@ const getLibraryPosts = (req, res) => {
       }
       return;
     }
-
     let posts = results;
     const commentsQuery = `
       SELECT *
@@ -565,8 +564,7 @@ const getLibraryPosts = (req, res) => {
 };
 const addComment = (req, res) => {
   const { postID, comment } = req.body;
-  const studentID = req.cookies.userID; // Assuming the student ID is stored in a cookie
-
+  const studentID = req.cookies.user_id; // Assuming the student ID is stored in a cookie
   // Insert the new comment into the database
   const q = `
     INSERT INTO Comment (Post_ID, Student_ID, Text, DateTime)
@@ -579,25 +577,9 @@ const addComment = (req, res) => {
       res.status(500).json({ message: error.message });
       return;
     }
-
-    // Retrieve the inserted comment from the database
-    const commentQuery = `
-      SELECT Comment.*, Student.Nickname AS Nickname, Student.Email AS Email
-      FROM Comment
-      JOIN Student ON Comment.Student_ID = Student.ID
-      WHERE Comment.ID = ?;
-    `;
-    const commentID = result.insertId;
-
-    sql.connection.query(commentQuery, commentID, (error, result) => {
-      if (error) {
-        res.status(500).json({ message: error.message });
-        return;
-      }
-
-      const newComment = result[0];
-      res.json({ comment: newComment });
-    });
+    console.log("successful new comment : ", result.insertId);
+    res.location("theLibrary");
+    res.sendStatus(302);
   });
 };
 
