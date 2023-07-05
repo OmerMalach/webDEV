@@ -1,7 +1,7 @@
 # Ignore editor and IDE files
 *.vscode/
 *.idea/
-
+*.Rhistory
 
 
 # Ignore dependencies and build artifacts
