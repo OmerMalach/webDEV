@@ -5,7 +5,7 @@ body {
     "content content list "
     "footer footer footer";
   grid-template-columns: 4fr 2fr 4fr;
-  grid-template-rows: 0.2fr 1fr 6fr 0.5fr;
+  grid-template-rows: 0.02fr 0.3fr 1fr 0.05fr;
 }
 header {
   display: flex;
@@ -143,14 +143,23 @@ h3 {
   width: 100%;
 }
 .posts > div:hover {
-  margin: 2px;
   border: 4px solid #f1f8d6;
   border-radius: 15px;
 }
+
 .posts > div p {
-  padding: 15px;
+  padding: 6px;
   font-size: 20px;
   line-height: 1.5;
+}
+.post-text {
+  font-size: 22px;
+  padding: 5px 15px;
+  justify-items: center;
+  background-color: #93b4c44c;
+  border-radius: 15px;
+  margin: 10px;
+  text-justify: center;
 }
 .posts > div small {
   text-align: center;
@@ -190,6 +199,32 @@ h3 {
   font-weight: 600;
   border-radius: 5px;
 }
+
+.comments-container {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.comment {
+  padding: 10px;
+  border: 1px solid #c8e2e6;
+  border-radius: 5px;
+  background-color: #b6d3e2a2;
+  margin: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #1a5c67;
+}
+
+.comment-text {
+  margin-top: 2px;
+  font-size: 0.9em;
+}
+
 @media only screen and (max-width: 1300px) {
   body {
     grid-template-areas:
@@ -197,8 +232,8 @@ h3 {
       "header search . "
       "list content content "
       "footer footer footer";
-    grid-template-columns: 10fr 1fr 1fr;
-    grid-template-rows: 0.2fr 0.5fr 7fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.02fr 0.01fr 1fr 0.05fr;
   }
   .search-container {
     margin-bottom: 0x;
@@ -232,7 +267,7 @@ h3 {
       "list list list  "
       "footer footer footer";
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.01fr 0.05fr 0.05fr 3fr 0.5fr;
+    grid-template-rows: 0.01fr 0.01fr 0.05fr 0.5fr 0.5fr 0.0001fr;
   }
   header {
     justify-self: center;

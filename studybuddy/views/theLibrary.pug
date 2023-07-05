@@ -14,18 +14,25 @@ html
       include navBar
     main
       #posts-container
-        form(action='/newcomment' method='POST' onsubmit='return validateComment()')
+        form(action='/newComment' method='POST' onsubmit='return validateComment()' id='comment-form')
           if posts && posts.length > 0
             each post in posts
-              .post-card
-                h3= post.title
+              .post-container
+                .post-header
+                  img(src='/photos/nullProfilePic.png' alt='Profile Picture')
+                  h2= post.Nickname
+                  p= formatTimestamp(post.DateTime)
+                  p= post.Email
+                  p= post.Text
                 .comment-section
-                  input(type='hidden' name='postId' value=post.id)
-                  input(type='text' placeholder='Leave a comment' class='comment-input')
-                  button.comment-button(data-author="#{loggedInUser}" data-post-id="#{post.Post_ID}") Comment
-                  ul.comment-list
+                  input(type='hidden' name='Post_ID' value=post.Post_ID)
+                  input(type='text' placeholder='Leave a comment' class='comment-input' id='comment-input')
+                  label(for=`comment-input-${post.Post_ID}`) Enter your comment
+                  button.comment-button(type='submit' name='comment-button' data-author=post.Nickname data-post-id=post.Post_ID) Comment
+                  ul.comment-list(id=`comment-list-${post.Post_ID}`)
+                    each comment in post.comments
+                      li= `${comment.Nickname}: ${comment.Text}`
           else
-            p No posts found.
     footer
       include footer
   script(src='/JS/theLibrary.js')

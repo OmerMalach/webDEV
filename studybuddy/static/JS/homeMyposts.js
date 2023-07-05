@@ -10,6 +10,7 @@ function validatePost() {
   }
   return true; // This will allow the form to be submitted
 }
+
 fetch("/mypost")
   .then((response) => {
     if (!response.ok) {
@@ -23,21 +24,51 @@ fetch("/mypost")
       posts.forEach(generatePostElement);
     }
   });
-
 function generatePostElement(post) {
-  console.log(post);
   const postElement = document.createElement("div");
-  const authorElement = document.createElement("small");
-  const timestampElement = document.createElement("small");
-  const textElement = document.createElement("p");
+  postElement.classList.add("each-post");
 
-  authorElement.textContent = post.Nickname;
-  timestampElement.textContent = new Date(post.DateTime).toLocaleString();
+  const textElement = document.createElement("div");
+  textElement.classList.add("post-text");
   textElement.textContent = post.Text;
   postElement.appendChild(textElement);
-  postElement.appendChild(authorElement);
-  postElement.appendChild(timestampElement);
 
-  //   postContainer.appendChild(postElement);
+  const timestampElement = document.createElement("p");
+  timestampElement.classList.add("timestamp");
+  timestampElement.textContent = new Date(post.DateTime).toLocaleString();
+  textElement.appendChild(timestampElement);
+
+  // create comments section for each post
+  if (post.comments.length > 0) {
+    const commentsElement = document.createElement("div");
+    commentsElement.classList.add("comments-container");
+
+    post.comments.forEach((comment) => {
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("comment");
+
+      const commentAuthorElement = document.createElement("p");
+      commentAuthorElement.classList.add("comment-author");
+      commentAuthorElement.textContent = comment.Nickname;
+      commentElement.appendChild(commentAuthorElement);
+
+      const commentTextElement = document.createElement("p");
+      commentTextElement.classList.add("comment-text");
+      commentTextElement.textContent = comment.Text;
+      commentElement.appendChild(commentTextElement);
+
+      const commentTimestampElement = document.createElement("small");
+      commentTimestampElement.classList.add("commentTimestamp");
+      commentTimestampElement.textContent = new Date(
+        comment.DateTime
+      ).toLocaleString();
+      commentElement.appendChild(commentTimestampElement);
+
+      commentsElement.appendChild(commentElement);
+    });
+
+    postElement.appendChild(commentsElement);
+  }
+
   postContainer.insertBefore(postElement, postContainer.firstChild);
 }

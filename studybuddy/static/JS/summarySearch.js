@@ -1,6 +1,7 @@
 const searchForm = document.querySelector("#searchForm");
 const searchButton = document.querySelector("#search-button");
 const keywordInput1 = document.querySelector("#input1");
+const keywordInput1 = document.querySelector("#input2");
 const keywordInput3 = document.querySelector("#input3");
 const keywordInput4 = document.querySelector("#input4");
 const keywordInput5 = document.querySelector("#input5");

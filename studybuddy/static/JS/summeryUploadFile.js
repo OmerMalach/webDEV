@@ -2,6 +2,22 @@
 const fileInput = document.querySelector("#summaryFile");
 const dropzone = document.querySelector("#file-box");
 let droppedFile = null;
+
+function resetFormAndState() {
+  const form = document.getElementById("uploadForm");
+  form.reset();
+
+  // Clear the droppedFile variable
+  droppedFile = null;
+
+  // Clear file input field
+  const fileInputField = form.querySelector('input[type="file"]');
+  fileInputField.value = null;
+
+  // Clear the dropzone content and style
+  dropzone.classList.remove("droped");
+}
+resetFormAndState();
 // Define the array first
 let eventNames = ["dragenter", "dragover", "dragleave", "drop"];
 // Add event listeners
@@ -77,6 +93,7 @@ document.getElementById("submitBtn").addEventListener("click", () => {
   var year = document.getElementById("input3").value;
   var semester = document.getElementById("input4").value;
   var summaryName = document.getElementById("input5").value;
+  var teacher = document.getElementById("input6").value;
   // Validate course number (only letters and numbers)
   var courseNumberPattern = /^[A-Za-z0-9]+$/;
   var NamePattern = /^[\u0590-\u05FFA-Za-z\s]+$/; // hebrew letters are ok!
@@ -116,7 +133,14 @@ document.getElementById("submitBtn").addEventListener("click", () => {
     );
     return;
   }
-
+  if (!NamePattern.test(teacher)) {
+    alert("teacher name should contain only letters.");
+    return;
+  }
+  if (!file || file.type !== "application/pdf") {
+    alert("Please upload a PDF file.");
+    return;
+  }
   let formData = new FormData();
   formData.append("summaryFile", file);
   formData.append("nameOfSummary", document.querySelector("#input5").value);
@@ -137,6 +161,7 @@ document.getElementById("submitBtn").addEventListener("click", () => {
     .catch((err) => console.log("Fetch error: ", err));
   // Show success message
   alert("Summary uploaded successfully!");
+  resetFormAndState();
 });
 
 // this patch of code creates a dynamic years menu, helps the user and great for validating.

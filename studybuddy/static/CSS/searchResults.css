@@ -4,7 +4,8 @@ h2 {
   margin-top: 7px;
 }
 .search-container label {
-  width: 90%;
+  display: flex;
+  width: 78%;
   font-size: 17px;
   padding: 10px 10px;
   display: block;
@@ -14,22 +15,24 @@ h2 {
   color: #517276;
 }
 .search-container {
-  justify-content: center;
   text-align: center;
-  padding: 5px 10px;
 }
+
 .search-container input[type="text"] {
   padding: 10px 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 420px;
+  justify-self: left;
   text-align: left; /* for hebrew we should do right? */
 }
 #filter-button {
   background-color: #4caf50;
   color: #ffffff;
   border: none;
+  margin: 10px;
+  margin-right: 300px;
   border-radius: 5px;
   padding: 10px 25px;
   cursor: pointer;
@@ -83,6 +86,57 @@ h2 {
   font-style: italic;
 }
 
+.credit-counter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  margin-right: 5px;
+  background: linear-gradient(to right, #71a1d2, #378790);
+  padding: 10px 10px;
+  border-radius: 30px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.credit-counter-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.credit-counter-container i {
+  color: gold;
+  font-size: 30px;
+}
+
+#credit-counter {
+  margin: 43px;
+  color: #f8f8f8; /* Text color */
+  font-size: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.credit-counter-container:hover i {
+  animation: spin 0.5s linear forwards;
+}
+@media only screen and (max-width: 1160px) {
+  #credit-counter {
+    font-size: 14px;
+  }
+  .credit-counter-container {
+    float: none;
+  }
+  #filter-button {
+    margin-right: 50px;
+  }
+}
+
 @media only screen and (max-width: 858px) {
   .search-container input[type="text"] {
     width: 300px;
@@ -92,8 +146,11 @@ h2 {
     padding: 10px;
   }
   #filter-button {
+    display: block;
+    justify-self: center;
     margin-top: 10px;
-    padding: 10px 80px;
+    margin-left: 200px;
+    padding: 10px 60px;
   }
   .summary-board > div h3 {
     font-size: 13px;
@@ -103,10 +160,5 @@ h2 {
   }
   .summary-board > div a {
     font-size: 15px;
-  }
-  img {
-    width: 280px;
-    padding: 5px 20px;
-    line-height: 60px;
   }
 }

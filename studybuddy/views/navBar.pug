@@ -1,5 +1,5 @@
 nav
-  img(src='/photos/logo2.png', alt='StudyBuddy')
+  img#logo(src='/photos/logo2.png', alt='StudyBuddy')
   ul#navbar
     li
       a(href='/home', class=(currentPage === 'home' ? 'active' : '')) Home
@@ -11,6 +11,8 @@ nav
       a(href='/mySummaries', class=(currentPage === 'mySummaries' ? 'active' : '')) My Summaries
     li
       a(href='/summeryUpload', class=(currentPage === 'summeryUpload' ? 'active' : '')) Summary Upload
+    li
+      a(href='/') Logout
   input#check(type='checkbox' name='checkbox')
   label.checkbtn(for='check')
     i#menu-icon.fas.fa-bars

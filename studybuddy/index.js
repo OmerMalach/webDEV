@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const CRUD = require("./db/CRUD");
+const seed = require("./db/seed"); // set up of the mock data
 const sql = require("./db/db");
 const cookieParser = require("cookie-parser"); // to install.
 const app = express();
@@ -23,12 +24,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 
+// Call the function to seed the database
+seed()
+  .then(() => {
+    console.log("Database seeded successfully!");
+  })
+  .catch((err) => {
+    console.log("Error seeding database:", err);
+  });
+
 // routing
 app.get("/", (req, res) => {
   res.render("LoginPage");
   //res.json({ message: "Welcome to web course example application." });
 });
-//app.post("/signup", CRUD.createNewUser);
+
 app.post("/LoginPage", CRUD.login);
 app.post("/signup", CRUD.createNewUser);
 
@@ -50,7 +60,11 @@ app.get("/about-us", (req, res) => {
   res.render("AboutUs");
 });
 app.get("/home", (req, res) => {
-  res.render("home", { currentPage: "home" });
+  res.render("home", {
+    currentPage: "home",
+    v1: req.cookies.user_name,
+    v2: req.cookies.user_credit,
+  });
 });
 
 
@@ -63,16 +77,17 @@ app.get("/theLibrary", (req, res) => {
   res.render("theLibrary", { currentPage: "theLibrary" });
 });
 
-
-
 app.get("/summeryUpload", (req, res) => {
   res.render("summeryUpload", { currentPage: "summeryUpload" });
 });
 
 app.post("/newpost", CRUD.createNewPost);
+app.get("/mypost", CRUD.getMyPosts);
 
-app.get("/show", CRUD.showAll);
-// set port, listen for requests
+app.post('/newComment', CRUD.addComment);
+app.get("/getLibraryPosts", CRUD.getLibraryPosts);
+
+
 
 
 
@@ -80,8 +95,7 @@ app.post("/summarySearch", CRUD.summarySearch);
 
 app.post("/mySummaries", CRUD.getStudentDownloads);
 
-const { getStudentDownloads } = require('./db/CRUD');
-
+const { getStudentDownloads } = require("./db/CRUD");
 
 app.get("/mySummaries", (req, res) => {
   const userId = req.cookies.user_id;
@@ -93,29 +107,36 @@ app.get("/mySummaries", (req, res) => {
       return;
     }
 
-    res.render("mySummaries", { downloads: downloadResults, currentPage: "mySummaries" });
+    res.render("mySummaries", {
+      downloads: downloadResults,
+      currentPage: "mySummaries",
+    });
   });
 });
 
-app.get('/SearchResults', (req, res) => {
+app.get("/SearchResults", (req, res) => {
   // Retrieve the summary results from the database
-  const query = 'SELECT * FROM Summary WHERE 1=1';
+  const query = "SELECT * FROM Summary WHERE 1=1";
   pool.query(query, (err, results) => {
     if (err) {
-      console.error('Error retrieving summary results:', err);
-      res.status(400).send({ message: 'Error retrieving summary results: ' + err });
+      console.error("Error retrieving summary results:", err);
+      res
+        .status(400)
+        .send({ message: "Error retrieving summary results: " + err });
       return;
     }
-    res.render('searchResults', { summaries: results });
+    res.render("searchResults", { summaries: results });
   });
 });
 
-app.get('/recentPosts',CRUD.recentPosts);
-app.post("/newcomment", CRUD.createNewComment);
 
 
 
 
+
+app.post("/downloadTracker", CRUD.downloadTracker);
+app.get("/myUploads", CRUD.myUploads);
+app.post("/upload", multer.single("summaryFile"), CRUD.uploadSummaryToCload);
 
 
 
@@ -129,7 +150,3 @@ app.listen(port, () => {
   console.log("Server is running on port:", port);
   console.log("Time:", datetime);
 });
-
-app.get("/mypost", CRUD.getMyPosts);
-app.get("/myUploads", CRUD.myUploads);
-app.post("/upload", multer.single("summaryFile"), CRUD.uploadSummaryToCload);
